@@ -1,0 +1,19 @@
+{
+  "name": "news-spy",
+  "version": "1.0.0",
+  "description": "Chatbot espião de notícias",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielrufino/news-spy.git"
+  },
+  "author": "Gabriel Rufino <contato@gabrielrufino.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gabrielrufino/news-spy/issues"
+  },
+  "homepage": "https://github.com/gabrielrufino/news-spy#readme"
+}
