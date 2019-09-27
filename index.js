@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('./init')
 
 const axios = require('axios')
 const dayjs = require('dayjs')

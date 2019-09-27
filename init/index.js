@@ -1,1 +1,2 @@
+require('./env')
 require('./db')
