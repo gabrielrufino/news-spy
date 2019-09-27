@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/gabrielrufino/news-spy#readme",
   "dependencies": {
+    "axios": "^0.19.0",
     "dotenv": "^8.1.0",
     "telegraf": "^3.32.0"
   },
