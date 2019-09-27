@@ -4,6 +4,7 @@ const axios = require('axios')
 const bot = require('./init/bot')
 const dayjs = require('dayjs')
 const db = require('./init/db')
+const helpers = require('./helpers')
 
 bot.start(context => {
   db
@@ -16,12 +17,7 @@ bot.start(context => {
 })
 
 bot.command('search', context => {
-  const subject = context
-                    .message
-                    .text
-                    .split(' ')
-                    .slice(1)
-                    .join('+')
+  const subject = helpers.removeCommand(context.message.text)
 
   axios.get(`https://newsapi.org/v2/top-headlines`, {
     params: {
