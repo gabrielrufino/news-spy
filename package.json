@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/gabrielrufino/news-spy/issues"
   },
-  "homepage": "https://github.com/gabrielrufino/news-spy#readme"
+  "homepage": "https://github.com/gabrielrufino/news-spy#readme",
+  "dependencies": {
+    "telegraf": "^3.32.0"
+  }
 }
