@@ -2,10 +2,19 @@ require('./init')
 
 const axios = require('axios')
 const dayjs = require('dayjs')
+const db = require('./init/db')
 const Telegraf = require('telegraf')
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
-bot.start(context => context.reply('Bem-vindo ao News Spy!'))
+bot.start(context => {
+  db
+    .get('users')
+    .push(context.from)
+    .write()
+
+
+  context.reply('Bem-vindo ao News Spy!')
+})
 
 bot.command('search', context => {
   const subject = context
