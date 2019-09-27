@@ -1,11 +1,10 @@
 require('./init')
 
 const axios = require('axios')
+const bot = require('./init/bot')
 const dayjs = require('dayjs')
 const db = require('./init/db')
-const Telegraf = require('telegraf')
 
-const bot = new Telegraf(process.env.BOT_TOKEN)
 bot.start(context => {
   db
     .get('users')
