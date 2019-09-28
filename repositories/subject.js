@@ -20,13 +20,13 @@ const create = expression => {
 }
 
 const wasFollowed = (expression, user) => {
-  create(expression)
-
   const newsubject = subjects
     .find({ expression })
     .value()
 
-  newsubject.followers.push(user)
+  if (!newsubject.followers.includes(user)) {
+    newsubject.followers.push(user)
+  }
 
   return subjects
     .find({ expression })

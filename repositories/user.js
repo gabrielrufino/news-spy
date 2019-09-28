@@ -1,4 +1,4 @@
-const db = require('../init/db')
+const db      = require('../init/db')
 const subject = require('./subject')
 
 const users = db.get('users')
@@ -21,20 +21,22 @@ const create = data => {
 }
 
 const follow = (id, expression) => {
+  subject.create(expression)
+
   const user = users
     .find({ id })
     .value()
 
-  user.following.push(expression)
-
-  users
-    .find({ id })
-    .assign(user)
-    .write()
+  if (!user.following.includes(expression)) {
+    user.following.push(expression)
+  }
 
   subject.wasFollowed(expression, user.id)
 
-  return user
+  return users
+    .find({ id })
+    .assign(user)
+    .write()
 }
 
 module.exports = {
