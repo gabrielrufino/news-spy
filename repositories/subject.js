@@ -19,6 +19,11 @@ const create = expression => {
   }
 }
 
+const list = () => {
+  return subjects
+    .value()
+}
+
 const wasFollowed = (expression, user) => {
   const newsubject = subjects
     .find({ expression })
@@ -36,5 +41,6 @@ const wasFollowed = (expression, user) => {
 
 module.exports = {
   create,
+  list,
   wasFollowed
 }
