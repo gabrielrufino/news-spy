@@ -5,7 +5,6 @@ const bot = require('./init/bot')
 const dayjs = require('dayjs')
 const helpers = require('./helpers')
 const user = require('./repositories/user')
-const subject = require('./repositories/subject')
 
 bot.start(context => {
   user.create(context.from)
@@ -36,7 +35,8 @@ bot.command('search', context => {
 bot.command('spy', context => {
   const expression = helpers.removeCommand(context.message.text)
 
-  subject.create(expression)
+  const userId = context.from.id
+  user.follow(userId, expression)
 
   context.reply(`Deixe comigo! Eu vou espionar notícias relacionadas à ${expression} para você.`)
 })
