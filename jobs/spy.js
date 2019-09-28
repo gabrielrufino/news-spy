@@ -1,20 +1,20 @@
-const axios = require('axios')
 const cron  = require('cron')
 const dayjs = require('dayjs')
 
 const bot     = require('../init/bot')
+const newsApi = require('../init/news-api')
 const subject = require('../repositories/subject')
 
-const spy = new cron.CronJob('0 */20 * * * *', () => {
+const spy = new cron.CronJob('*/10 * * * * *', () => {
   subject
     .list()
     .forEach(sub => {
-      axios.get(`https://newsapi.org/v2/top-headlines`, {
+      newsApi.get(`top-headlines`, {
         params: {
           q: sub.expression,
-          apiKey: process.env.NEWS_API_TOKEN,
           from: dayjs().format('YYYY-MM-DD'),
-          to: dayjs().format('YYYY-MM-DD')
+          to: dayjs().format('YYYY-MM-DD'),
+          apiKey: process.env.NEWS_API_TOKEN
         }
       })
         .then(({ data }) => {
