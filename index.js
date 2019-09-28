@@ -4,8 +4,8 @@ const axios = require('axios')
 const bot = require('./init/bot')
 const dayjs = require('dayjs')
 const helpers = require('./helpers')
-const user = require('./models/user')
-const subject = require('./models/subject')
+const user = require('./repositories/user')
+const subject = require('./repositories/subject')
 
 bot.start(context => {
   user.create(context.from)
