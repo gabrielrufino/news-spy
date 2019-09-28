@@ -1,4 +1,5 @@
 require('./init')
+require('./jobs')
 
 const axios = require('axios')
 const bot = require('./init/bot')
