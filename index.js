@@ -3,15 +3,11 @@ require('./init')
 const axios = require('axios')
 const bot = require('./init/bot')
 const dayjs = require('dayjs')
-const db = require('./init/db')
 const helpers = require('./helpers')
+const user = require('./models/user')
 
 bot.start(context => {
-  db
-    .get('users')
-    .push(context.from)
-    .write()
-
+  user.create(context.from)
 
   context.reply('Bem-vindo ao News Spy!')
 })
