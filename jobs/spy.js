@@ -5,7 +5,7 @@ const bot     = require('../init/bot')
 const newsApi = require('../init/news-api')
 const subject = require('../repositories/subject')
 
-const spy = new cron.CronJob('*/10 * * * * *', () => {
+const spy = new cron.CronJob('* */20 * * * *', () => {
   subject
     .list()
     .forEach(sub => {
