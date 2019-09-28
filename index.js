@@ -36,6 +36,12 @@ bot.command('search', context => {
     })
 })
 
+bot.command('spy', context => {
+  const subject = helpers.removeCommand(context.message.text)
+
+  context.reply(`Deixe comigo! Eu vou espionar notícias relacionadas à ${subject} para você.`)
+})
+
 bot.launch()
   .then(() => {
     console.log('News Spy funcionando!')
