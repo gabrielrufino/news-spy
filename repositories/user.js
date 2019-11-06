@@ -1,45 +1,42 @@
-const db      = require('../init/db')
+const db = require('../init/db')
 const subject = require('./subject')
 
-const users = db.get('users')
+let users
 
-const create = data => {
-  const user = users.find({ id: data.id }).value()
+db()
+  .then(db => {
+    users = db.collection('users')
+  })
 
-  if (!user) {
-    const newUser = {
-      ...data,
-      following: []
+const createIfNotExists = async data => {
+  try {
+    const user = await users.findOne({ telegram_id: data.id })
+
+    if (!user) {
+      await users.insertOne({
+        telegram_id: data.id,
+        is_bot: data.is_bot,
+        first_name: data.first_name,
+        last_name: data.last_name,
+        username: 'gabrielrufino',
+        language_code: 'en'
+      })
     }
-
-    return users
-      .push(newUser)
-      .write()
-  } else {
-    return user
+  } catch (error) {
+    throw new Error(error)
   }
 }
 
-const follow = (id, expression) => {
-  subject.create(expression)
-
-  const user = users
-    .find({ id })
-    .value()
-
-  if (!user.following.includes(expression)) {
-    user.following.push(expression)
+const follow = async (follower, expression) => {
+  try {
+    await subject.createIfNotExists(expression)
+    return await subject.addFollower(follower, expression)
+  } catch (error) {
+    throw new Error(error)
   }
-
-  subject.wasFollowed(expression, user.id)
-
-  return users
-    .find({ id })
-    .assign(user)
-    .write()
 }
 
 module.exports = {
-  create,
+  createIfNotExists,
   follow
 }

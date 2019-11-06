@@ -1,14 +1,29 @@
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
+const mongodb = require('mongodb')
 
-const adapter = new FileSync('db.json')
-const db = low(adapter)
+const {
+  DATABASE_URL,
+  DATABASE_USER,
+  DATABASE_PASS,
+  DATABASE_HOST,
+  DATABASE_PORT,
+  DATABASE_NAME
+} = process.env
 
-db
-  .defaults({
-    subjects: [],
-    users: [],
-  })
-  .write()
+const MongoClient = mongodb.MongoClient
+const url = DATABASE_URL || `mongodb://${DATABASE_USER}:${DATABASE_PASS}@${DATABASE_HOST}:${DATABASE_PORT}`
 
-module.exports = db
+const client = new MongoClient(url)
+
+const connect = async () => {
+  try {
+    await client.connect()
+
+    const db = client.db(DATABASE_NAME)
+
+    return db
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
+module.exports = connect

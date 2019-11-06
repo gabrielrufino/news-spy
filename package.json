@@ -6,7 +6,13 @@
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "standard": "standard"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run standard"
+    }
   },
   "repository": {
     "type": "git",
@@ -23,10 +29,12 @@
     "cron": "^1.7.2",
     "dayjs": "^1.8.16",
     "dotenv": "^8.1.0",
-    "lowdb": "^1.0.0",
+    "mongodb": "^3.3.3",
     "telegraf": "^3.32.0"
   },
   "devDependencies": {
-    "nodemon": "^1.19.2"
+    "husky": "^3.0.9",
+    "nodemon": "^1.19.2",
+    "standard": "^14.3.1"
   }
 }
