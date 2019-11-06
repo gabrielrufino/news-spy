@@ -6,7 +6,7 @@ const {
   DATABASE_PASS,
   DATABASE_HOST,
   DATABASE_PORT,
-  DATABASE_NAME,
+  DATABASE_NAME
 } = process.env
 
 const MongoClient = mongodb.MongoClient
