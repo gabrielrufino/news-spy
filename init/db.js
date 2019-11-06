@@ -1,13 +1,16 @@
 const mongodb = require('mongodb')
 
 const {
+  DATABASE_URL,
+  DATABASE_USER,
+  DATABASE_PASS,
   DATABASE_HOST,
   DATABASE_PORT,
-  DATABASE_NAME
+  DATABASE_NAME,
 } = process.env
 
 const MongoClient = mongodb.MongoClient
-const url = `mongodb://${DATABASE_HOST}:${DATABASE_PORT}`
+const url = DATABASE_URL || `mongodb://${DATABASE_USER}:${DATABASE_PASS}@${DATABASE_HOST}:${DATABASE_PORT}`
 
 const client = new MongoClient(url)
 
