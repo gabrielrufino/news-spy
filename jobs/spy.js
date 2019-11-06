@@ -5,7 +5,7 @@ const bot = require('../init/bot')
 const newsApi = require('../init/news-api')
 const subject = require('../repositories/subject')
 
-const spy = new cron.CronJob('*/5 * * * * *', async () => {
+const spy = new cron.CronJob('* */20 * * * *', async () => {
   try {
     const subjects = await subject.list()
 
