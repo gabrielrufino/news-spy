@@ -19,7 +19,7 @@ const spy = new cron.CronJob('*/5 * * * * *', async () => {
     })
       .then(({ data }) => {
         const response = data.articles.map(news => `${news.title}\n${news.url}\n\n`)
-  
+
         sub.followers.forEach(follower => {
           bot.telegram.sendMessage(follower, response.join(''))
         })

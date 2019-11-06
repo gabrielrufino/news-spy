@@ -19,7 +19,7 @@ const create = async data => {
       language_code: 'en'
     })
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error)
   }
 }
 

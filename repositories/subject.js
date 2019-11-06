@@ -18,7 +18,7 @@ const createIfNotExists = async expression => {
       })
     }
   } catch (error) {
-    throw new Error(erro)
+    throw new Error(error)
   }
 }
 
