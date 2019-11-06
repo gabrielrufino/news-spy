@@ -22,6 +22,23 @@ const createIfNotExists = async expression => {
   }
 }
 
+const addFollower = async (follower, expression) => {
+  try {
+    await subjects.updateOne(
+      {
+        expression
+      },
+      {
+        $push: {
+          followers: follower
+        }
+      }
+    )
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
 const list = async () => {
   try {
     return await subjects.find({}).toArray()
@@ -32,5 +49,6 @@ const list = async () => {
 
 module.exports = {
   createIfNotExists,
+  addFollower,
   list
 }
