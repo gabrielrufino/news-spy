@@ -8,7 +8,7 @@ const subject = require('../repositories/subject')
 const spy = new cron.CronJob('* */20 * * * *', async () => {
   try {
     const subjects = await subject.list()
-  
+
     subjects.forEach(sub => {
       newsApi.get('top-headlines', {
         params: {
@@ -20,7 +20,7 @@ const spy = new cron.CronJob('* */20 * * * *', async () => {
       })
         .then(({ data }) => {
           const response = data.articles.map(news => `${news.title}\n${news.url}\n\n`)
-  
+
           sub.followers.forEach(follower => {
             bot.telegram.sendMessage(follower, response.join(''))
           })
