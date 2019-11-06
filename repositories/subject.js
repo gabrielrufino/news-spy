@@ -1,46 +1,36 @@
 const db = require('../init/db')
 
-const subjects = db.get('subjects')
+let subjects
 
-const create = expression => {
-  const subject = subjects.find({ expression }).value()
+db()
+  .then(db => {
+    subjects = db.collection('subjects')
+  })
 
-  if (!subject) {
-    const newSubject = {
-      expression,
-      followers: []
+const createIfNotExists = async expression => {
+  try {
+    const subject = await subjects.findOne({ expression })
+
+    if (!subject) {
+      await subjects.insert({
+        expression,
+        followers: []
+      })
     }
-
-    return subjects
-      .push(newSubject)
-      .write()
-  } else {
-    return subject
+  } catch (error) {
+    throw new Error(erro)
   }
 }
 
-const list = () => {
-  return subjects
-    .value()
-}
-
-const wasFollowed = (expression, user) => {
-  const newsubject = subjects
-    .find({ expression })
-    .value()
-
-  if (!newsubject.followers.includes(user)) {
-    newsubject.followers.push(user)
+const list = async () => {
+  try {
+    return await subjects.find({}).toArray()
+  } catch (error) {
+    throw new Error(error)
   }
-
-  return subjects
-    .find({ expression })
-    .assign(newsubject)
-    .write()
 }
 
 module.exports = {
-  create,
-  list,
-  wasFollowed
+  createIfNotExists,
+  list
 }
