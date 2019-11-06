@@ -7,7 +7,7 @@ const db = low(adapter)
 db
   .defaults({
     subjects: [],
-    users: [],
+    users: []
   })
   .write()
 

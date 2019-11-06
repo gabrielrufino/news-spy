@@ -16,7 +16,7 @@ bot.start(context => {
 bot.command('search', context => {
   const subject = helpers.removeCommand(context.message.text)
 
-  axios.get(`https://newsapi.org/v2/top-headlines`, {
+  axios.get('https://newsapi.org/v2/top-headlines', {
     params: {
       q: subject,
       apiKey: process.env.NEWS_API_TOKEN,
