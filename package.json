@@ -9,6 +9,11 @@
     "dev": "nodemon index.js",
     "standard": "standard"
   },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run standard"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gabrielrufino/news-spy.git"
