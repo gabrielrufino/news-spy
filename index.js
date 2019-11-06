@@ -8,7 +8,7 @@ const helpers = require('./helpers')
 const user = require('./repositories/user')
 
 bot.start(context => {
-  user.create(context.from)
+  user.createIfNotExists(context.from)
 
   context.reply('Bem-vindo ao News Spy!')
 })
