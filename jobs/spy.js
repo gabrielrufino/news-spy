@@ -5,7 +5,7 @@ const bot = require('../init/bot')
 const newsApi = require('../init/news-api')
 const subject = require('../repositories/subject')
 
-const { NEWS_API_TOKEN } = process.env;
+const { NEWS_API_TOKEN } = process.env
 
 const spy = new cron.CronJob('* */20 * * * *', async () => {
   try {
