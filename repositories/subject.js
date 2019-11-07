@@ -12,7 +12,7 @@ const createIfNotExists = async expression => {
     const subject = await subjects.findOne({ expression })
 
     if (!subject) {
-      await subjects.insert({
+      await subjects.insertOne({
         expression,
         followers: []
       })
