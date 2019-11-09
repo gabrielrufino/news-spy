@@ -1,3 +1,4 @@
 {
-  "ignore": ["db.json", "backup.json"]
+  "ignore": [".env.development"],
+  "watch": [".env"]
 }
