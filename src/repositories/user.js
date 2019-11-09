@@ -12,8 +12,6 @@ const createIfNotExists = async data => {
   try {
     const user = await users.findOne({ 'telegram.id': data.id })
 
-    console.log(user)
-
     if (!user) {
       await users.insertOne({
         telegram: {
