@@ -1,4 +1,4 @@
-const db = require('../init/db')
+const db = require('../../init/db')
 const subject = require('./subject')
 
 let users

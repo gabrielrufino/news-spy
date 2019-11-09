@@ -3,7 +3,7 @@ require('./src/jobs')
 
 const axios = require('axios')
 const dayjs = require('dayjs')
-const bot = require('./src/init/bot')
+const bot = require('./init/bot')
 const helpers = require('./src/helpers')
 const user = require('./src/repositories/user')
 

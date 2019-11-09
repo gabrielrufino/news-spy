@@ -1,8 +1,8 @@
 const cron = require('cron')
 const dayjs = require('dayjs')
 
-const bot = require('../init/bot')
-const newsApi = require('../init/news-api')
+const bot = require('../../init/bot')
+const newsApi = require('../../init/news-api')
 const subject = require('../repositories/subject')
 
 const { NEWS_API_TOKEN } = process.env
