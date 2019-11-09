@@ -1,4 +1,4 @@
-require('./src/init')
+require('./init')
 require('./src/jobs')
 
 const axios = require('axios')
