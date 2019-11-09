@@ -10,16 +10,23 @@ db()
 
 const createIfNotExists = async data => {
   try {
-    const user = await users.findOne({ telegram_id: data.id })
+    const user = await users.findOne({ 'telegram.id': data.id })
+
+    console.log(user)
 
     if (!user) {
       await users.insertOne({
-        telegram_id: data.id,
-        is_bot: data.is_bot,
-        first_name: data.first_name,
-        last_name: data.last_name,
-        username: 'gabrielrufino',
-        language_code: 'en'
+        telegram: {
+          id: data.id,
+          is_bot: data.is_bot,
+          first_name: data.first_name,
+          last_name: data.last_name,
+          username: 'gabrielrufino',
+          language_code: 'en'
+        },
+        settings: {
+          frequency: 'daily'
+        }
       })
     }
   } catch (error) {
