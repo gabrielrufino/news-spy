@@ -18,7 +18,7 @@ const search = context => {
       context.reply(response.join(''))
     })
     .catch(error => {
-      console.log(error)
+      throw new Error(error)
     })
 }
 
