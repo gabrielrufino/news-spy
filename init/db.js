@@ -12,7 +12,9 @@ const {
 const MongoClient = mongodb.MongoClient
 const url = DATABASE_URL || `mongodb://${DATABASE_USER}:${DATABASE_PASS}@${DATABASE_HOST}:${DATABASE_PORT}`
 
-const client = new MongoClient(url)
+const client = new MongoClient(url, {
+  useUnifiedTopology: true
+})
 
 const connect = async () => {
   try {
