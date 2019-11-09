@@ -1,4 +1,5 @@
 const helpers = require('../helpers')
+const user = require('../repositories/user')
 
 const spy = context => {
   const expression = helpers.removeCommand(context.message.text)
@@ -9,4 +10,4 @@ const spy = context => {
   context.reply(`Deixe comigo! Eu vou espionar notícias relacionadas à ${expression} para você.`)
 }
 
-module.exportS = spy
+module.exports = spy
