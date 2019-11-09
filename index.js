@@ -1,11 +1,11 @@
-require('./init')
-require('./jobs')
+require('./src/init')
+require('./src/jobs')
 
 const axios = require('axios')
-const bot = require('./init/bot')
 const dayjs = require('dayjs')
-const helpers = require('./helpers')
-const user = require('./repositories/user')
+const bot = require('./src/init/bot')
+const helpers = require('./src/helpers')
+const user = require('./src/repositories/user')
 
 bot.start(context => {
   user.createIfNotExists(context.from)
