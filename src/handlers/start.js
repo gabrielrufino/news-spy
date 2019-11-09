@@ -1,4 +1,4 @@
-const user = require('../src/repositories/user')
+const user = require('../repositories/user')
 
 const start = context => {
   user.createIfNotExists(context.from)
