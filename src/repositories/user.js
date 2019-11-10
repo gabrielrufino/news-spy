@@ -23,7 +23,7 @@ const createIfNotExists = async data => {
           language_code: 'en'
         },
         settings: {
-          frequency: 'daily'
+          frequency: 'every-hour'
         }
       })
     }
