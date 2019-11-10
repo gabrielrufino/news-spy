@@ -1,9 +1,7 @@
-require('./init')
-require('./src/jobs')
-
-const bot = require('./init/bot')
+const { bot } = require('./init')
 const handlers = require('./src/handlers')
 
+require('./src/jobs')
 handlers(bot)
 
 bot.launch()
