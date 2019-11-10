@@ -32,6 +32,17 @@ const createIfNotExists = async data => {
   }
 }
 
+const updateField = async (id, field, value) => {
+  try {
+    await users.updateOne(
+      { 'telegram.id': id },
+      { $set: { [field]: value } }
+    )
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
 const follow = async (follower, expression) => {
   try {
     await subject.createIfNotExists(expression)
@@ -43,5 +54,6 @@ const follow = async (follower, expression) => {
 
 module.exports = {
   createIfNotExists,
+  updateField,
   follow
 }
