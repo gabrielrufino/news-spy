@@ -1,7 +1,5 @@
-const user = require('../repositories/user')
-
-const start = context => {
-  user.createIfNotExists(context.from)
+const start = repositories => context => {
+  repositories.user.createIfNotExists(context.from)
 
   context.reply('Bem-vindo ao News Spy!')
 }

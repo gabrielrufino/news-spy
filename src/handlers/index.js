@@ -3,10 +3,10 @@ const search = require('./search')
 const start = require('./start')
 const spy = require('./spy')
 
-module.exports = bot => {
-  bot.start(start)
+module.exports = ({bot, repositories}) => {
+  bot.start(start(repositories))
 
-  bot.command('frequency', frequency)
+  bot.command('frequency', frequency(repositories))
   bot.command('search', search)
-  bot.command('spy', spy)
+  bot.command('spy', spy(repositories))
 }

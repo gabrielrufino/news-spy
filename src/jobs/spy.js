@@ -1,15 +1,13 @@
 const cron = require('cron')
 const dayjs = require('dayjs')
 
-const bot = require('../../init/bot')
 const newsApi = require('../../init/news-api')
-const subject = require('../repositories/subject')
 
 const { NEWS_API_TOKEN } = process.env
 
-const spy = new cron.CronJob('* */20 * * * *', async () => {
+const spy = ({ repositories, bot }) => new cron.CronJob('* */20 * * * *', async () => {
   try {
-    const subjects = await subject.list()
+    const subjects = await repositories.subject.list()
 
     subjects.forEach(async sub => {
       try {
@@ -36,6 +34,6 @@ const spy = new cron.CronJob('* */20 * * * *', async () => {
   } catch (error) {
     throw new Error(error)
   }
-})
+}).start()
 
 module.exports = spy

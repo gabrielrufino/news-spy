@@ -1,7 +1,6 @@
 const helpers = require('../helpers')
-const user = require('../repositories/user')
 
-const frequency = async context => {
+const frequency = repositories => async context => {
   const { message: { text }, from: { id } } = context
   const f = helpers.removeCommand(text)
 
@@ -10,7 +9,7 @@ const frequency = async context => {
   }
 
   try {
-    await user.updateField(id, 'settings.frequency', f)
+    await repositories.user.updateField(id, 'settings.frequency', f)
 
     context.reply('Ok! Nós alteramos sua frequência.')
   } catch (error) {

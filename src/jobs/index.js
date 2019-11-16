@@ -1,3 +1,7 @@
 const spy = require('./spy')
 
-spy.start()
+const jobs = ({ repositories, bot }) => {
+  spy({ repositories, bot })
+}
+
+module.exports = jobs
