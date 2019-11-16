@@ -1,11 +1,10 @@
-const axios = require('axios')
 const dayjs = require('dayjs')
 const helpers = require('../helpers')
 
-const search = context => {
+const search = services => context => {
   const subject = helpers.removeCommand(context.message.text)
 
-  axios.get('https://newsapi.org/v2/top-headlines', {
+  services.news.get('top-headlines', {
     params: {
       q: subject,
       apiKey: process.env.NEWS_API_TOKEN,

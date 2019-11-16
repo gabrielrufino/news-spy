@@ -4,9 +4,9 @@ const handlers = require('./src/handlers')
 const jobs = require('./src/jobs')
 
 init()
-  .then(({ bot, repositories }) => {
-    handlers({ bot, repositories })
-    jobs({ repositories, bot })
+  .then(({ bot, repositories, services }) => {
+    handlers({ bot, repositories, services })
+    jobs({ repositories, bot, services })
 
     bot.launch()
       .then(() => {
