@@ -5,6 +5,8 @@ const spy = ({ repositories, bot, services }) => new cron.CronJob('* */20 * * * 
   try {
     const subjects = await repositories.subject.list()
 
+    const { NEWS_API_TOKEN } = process.env
+
     subjects.forEach(async sub => {
       try {
         const { data } = await services.news.get('top-headlines', {
