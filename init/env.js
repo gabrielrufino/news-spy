@@ -1,5 +1,9 @@
 const dotenv = require('dotenv')
 
-dotenv.config()
+const env = dotenv.config()
 
-module.exports = dotenv
+if (env.error) {
+  throw new Error(error)
+}
+
+module.exports = env
