@@ -5,7 +5,7 @@ module.exports = db => {
   const createIfNotExists = async data => {
     try {
       const user = await users.findOne({ 'telegram.id': data.id })
-  
+
       if (!user) {
         await users.insertOne({
           telegram: {
@@ -36,7 +36,7 @@ module.exports = db => {
       throw new Error(error)
     }
   }
-  
+
   const follow = async (follower, expression) => {
     try {
       await subject.createIfNotExists(expression)
