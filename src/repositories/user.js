@@ -2,6 +2,14 @@ module.exports = db => {
   const subject = require('./subject')(db)
   const users = db.collection('users')
 
+  const getAll = async () => {
+    try {
+      return await users.find()
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
   const createIfNotExists = async data => {
     try {
       const user = await users.findOne({ 'telegram.id': data.id })
@@ -47,6 +55,7 @@ module.exports = db => {
   }
 
   return {
+    getAll,
     createIfNotExists,
     updateField,
     follow
