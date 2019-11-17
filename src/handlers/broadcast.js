@@ -6,8 +6,8 @@ const broadcast = ({ repositories, bot }) => async context => {
 
     users.forEach(user => {
       bot.telegram.sendMessage(user.telegram.id, text)
-    });
-  
+    })
+
     context.reply('Deixa comigo')
   } catch (error) {
     throw new Error(error)
