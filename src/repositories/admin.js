@@ -6,7 +6,7 @@ module.exports = db => {
       const admin = await admins.findOne({ 'telegram.id': telegramId })
 
       return admin
-    } catch(error) {
+    } catch (error) {
       throw new Error(error)
     }
   }

@@ -14,7 +14,6 @@ const admin = ({ repositories }) => async (context, next) => {
     'broadcast'
   ]
 
-
   if (command && protectedCommands.includes(command)) {
     const admin = await repositories.admin.getByTelegramId(id)
 
