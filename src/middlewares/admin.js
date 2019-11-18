@@ -20,6 +20,8 @@ const admin = ({ repositories }) => async (context, next) => {
     if (admin) {
       next()
     }
+  } else {
+    next()
   }
 }
 
