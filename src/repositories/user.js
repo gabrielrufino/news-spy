@@ -1,5 +1,6 @@
+const { ObjectID } = require('mongodb')
+
 module.exports = db => {
-  const subject = require('./subject')(db)
   const users = db.collection('users')
 
   const getAll = async () => {
@@ -7,6 +8,16 @@ module.exports = db => {
       return await users.find()
     } catch (error) {
       throw new Error(error)
+    }
+  }
+
+  const getByTelegramId = async id => {
+    try {
+      const user = await users.findOne({ 'telegram.id': id })
+
+      return user
+    } catch (error) {
+      throw new Error(error);
     }
   }
 
@@ -36,7 +47,8 @@ module.exports = db => {
           },
           settings: {
             frequency: 'every-hour'
-          }
+          },
+          subjects: []
         })
       }
     } catch (error) {
@@ -55,10 +67,12 @@ module.exports = db => {
     }
   }
 
-  const follow = async (follower, expression) => {
+  const pushSubject = async (id, subject) => {
     try {
-      await subject.createIfNotExists(expression)
-      return await subject.addFollower(follower, expression)
+      await users.updateOne(
+        { _id: ObjectID(id) },
+        { $push: { subjects: subject } }
+      )
     } catch (error) {
       throw new Error(error)
     }
@@ -66,9 +80,10 @@ module.exports = db => {
 
   return {
     getAll,
+    getByTelegramId,
     getByTelegramUsername,
     createIfNotExists,
     updateField,
-    follow
+    pushSubject,
   }
 }
