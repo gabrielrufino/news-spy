@@ -1,4 +1,4 @@
-const start = repositories => context => {
+const start = ({ repositories }) => context => {
   repositories.user.createIfNotExists(context.from)
 
   context.reply('Bem-vindo ao News Spy!')

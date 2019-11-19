@@ -1,7 +1,7 @@
 const dayjs = require('dayjs')
 const helpers = require('../helpers')
 
-const search = services => context => {
+const search = ({ services }) => context => {
   const subject = helpers.removeCommand(context.message.text)
 
   services.news.get('top-headlines', {

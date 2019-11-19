@@ -1,6 +1,6 @@
 const helpers = require('../helpers')
 
-const spy = repositories => context => {
+const spy = ({ repositories }) => context => {
   const expression = helpers.removeCommand(context.message.text)
 
   const userId = context.from.id

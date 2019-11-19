@@ -1,6 +1,6 @@
 const helpers = require('../helpers')
 
-const frequency = repositories => async context => {
+const frequency = ({ repositories }) => async context => {
   const { message: { text }, from: { id } } = context
   const f = helpers.removeCommand(text)
 
