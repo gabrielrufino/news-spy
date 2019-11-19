@@ -1,7 +1,3 @@
-const spy = require('./spy')
-
-const jobs = ({ repositories, bot, services }) => {
-  spy({ repositories, bot, services })
-}
+const jobs = () => {}
 
 module.exports = jobs
