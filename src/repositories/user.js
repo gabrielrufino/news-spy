@@ -10,6 +10,16 @@ module.exports = db => {
     }
   }
 
+  const getByTelegramUsername = async username => {
+    try {
+      const user = await users.findOne({ 'telegram.username': username })
+
+      return user
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
   const createIfNotExists = async data => {
     try {
       const user = await users.findOne({ 'telegram.id': data.id })
@@ -56,6 +66,7 @@ module.exports = db => {
 
   return {
     getAll,
+    getByTelegramUsername,
     createIfNotExists,
     updateField,
     follow
