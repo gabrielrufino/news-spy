@@ -17,7 +17,7 @@ module.exports = db => {
 
       return user
     } catch (error) {
-      throw new Error(error);
+      throw new Error(error)
     }
   }
 
@@ -84,6 +84,6 @@ module.exports = db => {
     getByTelegramUsername,
     createIfNotExists,
     updateField,
-    pushSubject,
+    pushSubject
   }
 }
