@@ -18,10 +18,27 @@ const spy = (userId, { repositories, bot, services }) => new cron.CronJob('0 */1
           }
         })
 
-        const response = data.articles.map(news => `${news.title}\n${news.url}\n\n`)
+        const articles = await Promise.all(
+          data.articles.map(async article => {
+            const response = await services.algorithmia
+              .algo('nlp/SentimentAnalysis/1.0.5')
+              .pipe({
+                document: article.title,
+                language: 'auto'
+              })
+
+            article.sentiment = response.get()[0].sentiment
+
+            return article
+          })
+        )
+
+        articles.sort((a, b) => a.sentiment < b.sentiment ? 1 : -1)
+
+        const response = articles.map(news => `${news.title}\n${news.url}\n\n`).join('')
 
         if (response) {
-          bot.telegram.sendMessage(user.telegram.id, response.join(''))
+          bot.telegram.sendMessage(user.telegram.id, response)
         }
       } catch (error) {
         throw new Error(error)
