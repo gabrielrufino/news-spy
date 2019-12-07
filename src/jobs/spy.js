@@ -3,7 +3,7 @@ const dayjs = require('dayjs')
 
 const spy = (userId, { repositories, bot, services }) => new cron.CronJob('0 */10 * * * *', async () => {
   try {
-    const user = await repositories.user.getById(userId);
+    const user = await repositories.user.getById(userId)
 
     const { NEWS_API_TOKEN } = process.env
 

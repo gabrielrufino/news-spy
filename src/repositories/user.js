@@ -14,10 +14,10 @@ module.exports = db => {
   const getById = async id => {
     try {
       return await users.findOne({ _id: ObjectID(id) })
-    } catch(error) {
+    } catch (error) {
       throw new Error(error)
     }
-  } 
+  }
 
   const getByTelegramId = async id => {
     try {
