@@ -1,8 +1,8 @@
 const init = require('./init')
 
 const handlers = require('./src/handlers')
-const middlewares = require('./src/middlewares')
 const jobs = require('./src/jobs')
+const middlewares = require('./src/middlewares')
 
 init()
   .then(({ bot, repositories, services }) => {
