@@ -1,17 +1,17 @@
 const cron = require('cron')
 const dayjs = require('dayjs')
 
-const spy = ({ repositories, bot, services }) => new cron.CronJob('* */20 * * * *', async () => {
+const spy = (userId, { repositories, bot, services }) => new cron.CronJob('0 */20 * * * *', async () => {
   try {
-    const subjects = await repositories.subject.list()
+    const user = await repositories.user.getById(userId);
 
     const { NEWS_API_TOKEN } = process.env
 
-    subjects.forEach(async sub => {
+    user.subjects.forEach(async subject => {
       try {
         const { data } = await services.news.get('top-headlines', {
           params: {
-            q: sub.expression,
+            q: subject,
             from: dayjs().format('YYYY-MM-DD'),
             to: dayjs().format('YYYY-MM-DD'),
             apiKey: NEWS_API_TOKEN
@@ -21,9 +21,7 @@ const spy = ({ repositories, bot, services }) => new cron.CronJob('* */20 * * * 
         const response = data.articles.map(news => `${news.title}\n${news.url}\n\n`)
 
         if (response) {
-          sub.followers.forEach(follower => {
-            bot.telegram.sendMessage(follower, response.join(''))
-          })
+          bot.telegram.sendMessage(user.telegram.id, response.join(''))
         }
       } catch (error) {
         throw new Error(error)
