@@ -27,7 +27,7 @@ const spy = (userId, { repositories, bot, services }) => new cron.CronJob('0 */1
                 language: 'auto'
               })
 
-            article.sentiment = response.get()[0].sentiment
+            article.sentiment = Math.abs(response.get()[0].sentiment)
 
             return article
           })
