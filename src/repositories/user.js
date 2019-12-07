@@ -71,7 +71,7 @@ module.exports = db => {
     try {
       await users.updateOne(
         { _id: ObjectID(id) },
-        { $push: { subjects: subject } }
+        { $addToSet: { subjects: subject } }
       )
     } catch (error) {
       throw new Error(error)
@@ -79,11 +79,11 @@ module.exports = db => {
   }
 
   return {
+    createIfNotExists,
     getAll,
     getByTelegramId,
     getByTelegramUsername,
-    createIfNotExists,
-    updateField,
-    pushSubject
+    pushSubject,
+    updateField
   }
 }
