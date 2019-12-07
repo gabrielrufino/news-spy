@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/gabrielrufino/news-spy#readme",
   "dependencies": {
+    "algorithmia": "^0.3.10",
     "axios": "^0.19.0",
     "cron": "^1.7.2",
     "dayjs": "^1.8.16",
