@@ -11,6 +11,14 @@ module.exports = db => {
     }
   }
 
+  const getById = async id => {
+    try {
+      return await users.findOne({ _id: ObjectID(id) })
+    } catch(error) {
+      throw new Error(error)
+    }
+  } 
+
   const getByTelegramId = async id => {
     try {
       const user = await users.findOne({ 'telegram.id': id })
@@ -83,6 +91,7 @@ module.exports = db => {
     getAll,
     getByTelegramId,
     getByTelegramUsername,
+    getById,
     pushSubject,
     updateField
   }
