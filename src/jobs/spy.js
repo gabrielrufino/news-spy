@@ -1,7 +1,7 @@
 const cron = require('cron')
 const dayjs = require('dayjs')
 
-const spy = (userId, { repositories, bot, services }) => new cron.CronJob('0 */20 * * * *', async () => {
+const spy = (userId, { repositories, bot, services }) => new cron.CronJob('0 */10 * * * *', async () => {
   try {
     const user = await repositories.user.getById(userId);
 
