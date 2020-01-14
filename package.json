@@ -11,6 +11,7 @@
   },
   "husky": {
     "hooks": {
+      "pre-commit": "git-branch-is --not master",
       "pre-push": "npm run standard"
     }
   },
@@ -34,6 +35,7 @@
     "telegraf": "^3.32.0"
   },
   "devDependencies": {
+    "git-branch-is": "^3.1.0",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
     "nodemon": "^1.19.2",
