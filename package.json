@@ -6,6 +6,7 @@
   "scripts": {
     "deploy:heroku": "git push heroku master",
     "dev": "nodemon index.js",
+    "generate:commands": "node ./src/scripts/generate-commands.js",
     "standard": "standard",
     "start": "node index.js",
     "test": "jest --passWithNoTests"
