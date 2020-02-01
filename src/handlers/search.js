@@ -13,8 +13,14 @@ const search = ({ services }) => context => {
     }
   })
     .then(({ data }) => {
-      const response = data.articles.map(news => `${news.title}\n${news.url}\n\n`)
-      context.reply(response.join(''))
+      const news = data.articles.map(news => `${news.title}\n${news.url}\n\n`)
+      const response = news.join('')
+
+      if (response) {
+        context.reply(response)
+      } else {
+        context.reply(`Desculpe :( Não encontramos nenhuma notícia recente sobre ${subject}`)
+      }
     })
     .catch(error => {
       throw new Error(error)
