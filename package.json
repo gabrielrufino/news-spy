@@ -4,6 +4,7 @@
   "description": "Chatbot espião de notícias",
   "main": "index.js",
   "scripts": {
+    "deploy:heroku": "git push heroku master",
     "dev": "nodemon index.js",
     "standard": "standard",
     "start": "node index.js",
