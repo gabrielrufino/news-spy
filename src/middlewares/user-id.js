@@ -1,8 +1,10 @@
 const userId = ({ repositories }) => async (context, next) => {
   const { id } = context.message.from
 
-  const { _id } = await repositories.user.getByTelegramId(id)
-  context.state.user_id = _id
+  const user = await repositories.user.getByTelegramId(id)
+  if (user) {
+    context.state.user_id = user._id
+  }
 
   next()
 }
