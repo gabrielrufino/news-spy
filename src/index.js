@@ -3,7 +3,7 @@ const jobs = require('./jobs')
 const middlewares = require('./middlewares')
 
 const app = ({ bot, repositories }) => {
-  const services = require('./src/services')
+  const services = require('./services')
 
   middlewares({ bot, repositories })
   handlers({ bot, repositories, services })
