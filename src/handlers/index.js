@@ -1,16 +1,11 @@
-const broadcast = require('./broadcast')
-const frequency = require('./frequency')
-const search = require('./search')
-const start = require('./start')
-const spy = require('./spy')
+const router = require('./router')
 
-const handlers = ({ bot, repositories, services }) => {
-  bot.start(start({ repositories }))
+const handlers = modules => {
+  const { bot } = modules
 
-  bot.command('broadcast', broadcast({ repositories, bot }))
-  bot.command('frequency', frequency({ repositories }))
-  bot.command('search', search({ services }))
-  bot.command('spy', spy({ repositories }))
+  router.forEach(({ command, handler }) => {
+    bot.command(command, handler(modules))
+  })
 }
 
 module.exports = handlers
