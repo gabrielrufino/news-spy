@@ -12,8 +12,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "git-branch-is --not master",
-      "pre-push": "npm run standard"
+      "pre-commit": "npm run standard && git-branch-is --not master",
+      "pre-push": "npm test"
     }
   },
   "repository": {
