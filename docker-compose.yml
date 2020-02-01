@@ -1,16 +1,16 @@
 version: '3.1'
 
 services:
-  app:
-    image: node
-    working_dir: /usr/app
-    volumes:
-      - .:/usr/app
-    command: bash -c "npm install && npm run dev"
-    ports:
-      - "3000:3000"
-    depends_on:
-      - mongo
+  #app:
+  #  image: node
+  #  working_dir: /usr/app
+  #  volumes:
+  #    - .:/usr/app
+  #  command: bash -c "npm install && npm run dev"
+  #  ports:
+  #    - "3000:3000"
+  #  depends_on:
+  #    - mongo
   mongo:
     image: mongo
   # restart: always
