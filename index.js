@@ -3,3 +3,6 @@ const init = require('./init')
 
 init()
   .then(app)
+  .catch(error => {
+    throw error
+  })
