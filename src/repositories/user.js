@@ -56,7 +56,8 @@ module.exports = db => {
           settings: {
             frequency: 'every-hour'
           },
-          subjects: []
+          subjects: [],
+          messages: []
         })
       }
     } catch (error) {
@@ -86,6 +87,17 @@ module.exports = db => {
     }
   }
 
+  const pushMessage = async (id, message) => {
+    try {
+      await users.updateOne(
+        { _id: ObjectID(id) },
+        { $push: { messages: message } }
+      )
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
   return {
     createIfNotExists,
     getAll,
@@ -93,6 +105,7 @@ module.exports = db => {
     getByTelegramUsername,
     getById,
     pushSubject,
+    pushMessage,
     updateField
   }
 }
