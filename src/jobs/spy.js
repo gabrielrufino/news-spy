@@ -40,7 +40,7 @@ const spy = (userId, { repositories, bot, services }) => new cron.CronJob(cronTi
         const news = articles.map(news => ({
           title: news.title,
           url: news.url,
-          subject,
+          subject
         }))
 
         repositories.user.pushNews(userId, news)
