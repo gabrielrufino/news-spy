@@ -3,7 +3,7 @@ const dayjs = require('dayjs')
 
 const cronTime = '0 0 7,10,12,15,18,21 * * *'
 
-const spy = (userId, { repositories, bot, services }) => new cron.CronJob(cronTime, async () => {
+const spy = (userId, { repositories, services }) => new cron.CronJob(cronTime, async () => {
   try {
     const user = await repositories.user.getById(userId)
 
@@ -40,7 +40,8 @@ const spy = (userId, { repositories, bot, services }) => new cron.CronJob(cronTi
         const news = articles.map(news => ({
           title: news.title,
           url: news.url,
-          subject
+          subject,
+          sent: false
         }))
 
         repositories.user.pushNews(userId, news)

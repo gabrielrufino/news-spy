@@ -101,8 +101,21 @@ module.exports = db => {
   const pushNews = async (id, news) => {
     try {
       await users.updateOne(
-        { _id: ObjectID },
+        { _id: ObjectID(id) },
         { $push: { news: Array.isArray(news) ? { $each: news } : news } }
+      )
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  const setNewsAsSent = async (id, position) => {
+    const key = `news.${position}.sent`
+
+    try {
+      await users.updateOne(
+        { _id: ObjectID(id) },
+        { $set: { [key]: true } }
       )
     } catch (error) {
       throw new Error(error)
@@ -118,6 +131,7 @@ module.exports = db => {
     pushSubject,
     pushMessage,
     pushNews,
-    updateField
+    updateField,
+    setNewsAsSent
   }
 }
