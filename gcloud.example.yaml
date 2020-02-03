@@ -1,0 +1,10 @@
+runtime: nodejs12
+
+env_variables:
+  ALGORITHMIA_API_KEY: # Algorithmia API Key
+  BOT_TOKEN: # BOT Token
+  NEWS_API_TOKEN: # Token of the
+  DATABASE_URL: # URL of the database
+
+manual_scaling:
+  instances: 1
