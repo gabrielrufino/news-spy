@@ -8,10 +8,12 @@ const send = (userId, { repositories, bot }) => new cron.CronJob(cronTime, async
 
     const news = user.news.filter(({ sent }) => !sent)[0]
 
-    const index = user.news.indexOf(news)
+    if (news) {
+      const index = user.news.indexOf(news)
 
-    bot.telegram.sendMessage(user.telegram.id, news.url)
-    repositories.user.setNewsAsSent(userId, index)
+      bot.telegram.sendMessage(user.telegram.id, news.url)
+      repositories.user.setNewsAsSent(userId, index)
+    }
   } catch (error) {
     throw new Error(error)
   }
