@@ -37,11 +37,13 @@ const spy = (userId, { repositories, bot, services }) => new cron.CronJob(cronTi
 
         articles.sort((a, b) => a.sentiment < b.sentiment ? 1 : -1)
 
-        const response = articles.map(news => `${news.title}\n${news.url}\n\n`).join('')
+        const news = articles.map(news => ({
+          title: news.title,
+          url: news.url,
+          subject,
+        }))
 
-        if (response) {
-          bot.telegram.sendMessage(user.telegram.id, response)
-        }
+        repositories.user.pushNews(userId, news)
       } catch (error) {
         throw new Error(error)
       }

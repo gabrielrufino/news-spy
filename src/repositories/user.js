@@ -98,6 +98,17 @@ module.exports = db => {
     }
   }
 
+  const pushNews = async (id, news) => {
+    try {
+      await users.updateOne(
+        { _id: ObjectID },
+        { $push: { news: Array.isArray(news) ? { $each: news } : news } }
+      )
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
   return {
     createIfNotExists,
     getAll,
@@ -106,6 +117,7 @@ module.exports = db => {
     getById,
     pushSubject,
     pushMessage,
+    pushNews,
     updateField
   }
 }
