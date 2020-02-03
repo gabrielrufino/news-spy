@@ -9,6 +9,7 @@
     "dev": "nodemon index.js",
     "forever": "forever",
     "generate:commands": "node ./src/scripts/generate-commands.js",
+    "postdeploy:gcloud": "npm run generate:commands",
     "postdeploy:heroku": "npm run generate:commands",
     "standard": "standard",
     "start": "forever -o /tmp/output.log -e /tmp/errors.log index.js",
