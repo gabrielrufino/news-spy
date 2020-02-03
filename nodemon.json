@@ -1,3 +1,4 @@
 {
-  "ignore": ["db.json", "backup.json"]
+  "ignore": [".env.development"],
+  "watch": ["index.js", "./init/*", "./src/*", ".env", "package.json", "package-lock.json"]
 }

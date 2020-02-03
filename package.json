@@ -1,17 +1,24 @@
 {
   "name": "news-spy",
   "version": "1.0.0",
-  "description": "Chatbot espião de notícias",
+  "description": "Chatbot espião de notícias que monitora notícias de seu interesse e as envia em ordem de relevância",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy:gcloud": "gcloud app deploy gcloud.yaml --stop-previous-version",
+    "deploy:heroku": "git push heroku master",
     "dev": "nodemon index.js",
-    "standard": "standard"
+    "forever": "forever",
+    "generate:commands": "node ./src/scripts/generate-commands.js",
+    "postdeploy:gcloud": "npm run generate:commands",
+    "postdeploy:heroku": "npm run generate:commands",
+    "standard": "standard",
+    "start": "forever -o /tmp/output.log -e /tmp/errors.log index.js",
+    "test": "jest --passWithNoTests"
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run standard"
+      "pre-commit": "npm run standard -- --fix && git-branch-is --not master",
+      "pre-push": "npm test"
     }
   },
   "repository": {
@@ -25,15 +32,19 @@
   },
   "homepage": "https://github.com/gabrielrufino/news-spy#readme",
   "dependencies": {
+    "algorithmia": "^0.3.10",
     "axios": "^0.19.0",
     "cron": "^1.7.2",
     "dayjs": "^1.8.16",
     "dotenv": "^8.1.0",
+    "forever": "^2.0.0",
     "mongodb": "^3.3.3",
     "telegraf": "^3.32.0"
   },
   "devDependencies": {
+    "git-branch-is": "^3.1.0",
     "husky": "^3.0.9",
+    "jest": "^24.9.0",
     "nodemon": "^1.19.2",
     "standard": "^14.3.1"
   }
