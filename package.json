@@ -4,6 +4,7 @@
   "description": "Chatbot espião de notícias que monitora notícias de seu interesse e as envia em ordem de relevância",
   "main": "index.js",
   "scripts": {
+    "deploy:gcloud": "gcloud app deploy gcloud.yaml --stop-previous-version",
     "deploy:heroku": "git push heroku master",
     "dev": "nodemon index.js",
     "forever": "forever",
