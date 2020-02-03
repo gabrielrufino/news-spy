@@ -3,7 +3,7 @@ const dayjs = require('dayjs')
 
 const cronTime = '0 0 7,10,12,15,18,21 * * *'
 
-const spy = (userId, { repositories, services }) => new cron.CronJob(cronTime, async () => {
+const search = (userId, { repositories, services }) => new cron.CronJob(cronTime, async () => {
   try {
     const user = await repositories.user.getById(userId)
 
@@ -54,4 +54,4 @@ const spy = (userId, { repositories, services }) => new cron.CronJob(cronTime, a
   }
 }).start()
 
-module.exports = spy
+module.exports = search
