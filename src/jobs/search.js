@@ -1,8 +1,7 @@
 const cron = require('cron')
 const dayjs = require('dayjs')
 
-// const cronTime = '0 0 7,10,12,15,18,21 * * *'
-const cronTime = '0 0,1,2 19 * * *'
+const cronTime = '0 0 7,10,12,15,18,21 * * *'
 
 const search = (userId, { repositories, services }) => new cron.CronJob(cronTime, async () => {
   try {
