@@ -122,6 +122,17 @@ module.exports = db => {
     }
   }
 
+  const clearNews = async () => {
+    try {
+      await users.updateMany(
+        {},
+        { $set: { news: [] } }
+      )
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
   return {
     createIfNotExists,
     getAll,
@@ -132,6 +143,7 @@ module.exports = db => {
     pushMessage,
     pushNews,
     updateField,
-    setNewsAsSent
+    setNewsAsSent,
+    clearNews
   }
 }

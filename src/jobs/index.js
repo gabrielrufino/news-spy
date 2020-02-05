@@ -1,3 +1,4 @@
+const clearNews = require('./clear-news')
 const search = require('./search')
 const send = require('./send')
 
@@ -8,6 +9,8 @@ const jobs = async ({ repositories, bot, services }) => {
     search(user._id, { repositories, services })
     send(user._id, { repositories, bot })
   })
+
+  clearNews({ repositories })
 
   return {
     send,
