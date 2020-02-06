@@ -2,7 +2,7 @@ const helpers = require('../helpers')
 
 const unfollow = ({ repositories }) => async context => {
   const subject = helpers.removeCommand(context.update.message.text)
-  
+
   const user = await repositories.user.getByTelegramId(context.update.message.from.id)
 
   if (!user.subjects.includes(subject)) {

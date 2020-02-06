@@ -49,7 +49,7 @@ const router = [
   {
     command: 'unfollow',
     description: 'Deixa de vigiar um assunto especificado',
-    handler: unfollow,
+    handler: unfollow
   },
   {
     admin: true,
