@@ -4,6 +4,7 @@ const frequency = require('./frequency')
 const search = require('./search')
 const start = require('./start')
 const spy = require('./spy')
+const subjects = require('./subjects')
 const users = require('./users')
 
 const router = [
@@ -36,8 +37,13 @@ const router = [
   },
   {
     command: 'spy',
-    description: 'Começa a espionar um tema especificado',
+    description: 'Começa a vigiar um tema especificado',
     handler: spy
+  },
+  {
+    command: 'subjects',
+    description: 'Lista todos os assuntos vigiados',
+    handler: subjects,
   },
   {
     admin: true,
