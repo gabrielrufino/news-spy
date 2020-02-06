@@ -11,49 +11,58 @@ const users = require('./users')
 const router = [
   {
     admin: true,
-    command: 'broadcast',
+    command: 'transmitir',
+    alternatives: ['broadcast'],
     description: 'Transmite uma mensagem para todos os usário do bot',
     handler: broadcast
   },
   {
     admin: true,
-    command: 'direct',
+    command: 'enviar',
+    alternatives: ['direct'],
     description: 'Envia uma mensagem direta para um usuário',
     handler: direct
   },
   {
-    command: 'frequency',
+    command: 'frequencia',
+    alternatives: ['frequency'],
     description: 'Define a frequência que o usuário deseja receber notícias',
     handler: frequency
   },
   {
-    command: 'search',
+    command: 'buscar',
+    alternatives: ['search'],
     description: 'Busca por notícias de um tema específico',
     handler: search
   },
   {
     command: 'start',
+    alternatives: ['iniciar'],
     description: 'Inicia conversa com o Bot',
     handler: start
   },
   {
-    command: 'spy',
+    command: 'vigiar',
+    alternatives: ['watch'],
     description: 'Começa a vigiar um assunto especificado',
     handler: spy
   },
   {
-    command: 'subjects',
+    command: 'vigiados',
+    alternatives: ['assuntos', 'subjects', 'watched'],
     description: 'Lista todos os assuntos vigiados',
     handler: subjects
   },
   {
-    command: 'unfollow',
+    command: 'deixar',
+    alternatives: ['unwatch'],
     description: 'Deixa de vigiar um assunto especificado',
     handler: unfollow
   },
   {
     admin: true,
-    command: 'users',
+    command: 'usuarios',
+    alternatives: ['users'],
     description: 'Lista os usuários da base',
     handler: users
   }
