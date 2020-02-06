@@ -6,18 +6,18 @@ const router = [
   {
     name: 'Limpar notícias',
     handler: clearNews,
-    cronTime: '0 58 0,22 * * *'
+    cronTime: '0 0 0 * * *'
   },
   {
     name: 'Buscar notícias',
     handler: search,
-    cronTime: '0 56 22,7,10,12,15,18,21 * * *',
+    cronTime: '0 0 7,10,12,15,18,21 * * *',
     onePerUser: true
   },
   {
     name: 'Enviar notícia',
     handler: send,
-    cronTime: '0 57 22 * * *',
+    cronTime: '0 0 * * * *',
     onePerUser: true
   }
 ]
