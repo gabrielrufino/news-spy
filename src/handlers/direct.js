@@ -5,12 +5,24 @@ const direct = ({ bot, repositories }) => async context => {
 
   const [username, ...message] = text.split(' ')
 
-  try {
-    const { telegram: { id } } = await repositories.user.getByTelegramUsername(username)
-
-    bot.telegram.sendMessage(id, message.join(' '))
-  } catch (error) {
-    throw new Error(error)
+  if (!username || message.length === 0) {
+    await context.reply('Um username e uma mensagem são obrigatórios! 🤨 Use esse comando da seguinte forma: ')
+    context.reply('/direct [username] [Mensagem que você deseja enviar]')
+  } else {
+    try {
+      const user = await repositories.user.getByTelegramUsername(username)
+  
+      if (user) {
+        const { id, first_name: firstName } = user.telegram
+  
+        await bot.telegram.sendMessage(id, message.join(' '))
+        context.reply(`Mensagem direta enviada para ${firstName}.`)
+      } else {
+        context.reply(`Usuário com username ${username} não encontrado! 🚫`)
+      }
+    } catch (error) {
+      throw new Error(error)
+    }
   }
 }
 
