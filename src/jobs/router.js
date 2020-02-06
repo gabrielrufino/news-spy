@@ -1,4 +1,5 @@
 const clearNews = require('./clear-news')
+const inviteToWatch = require('./invite-to-watch')
 const search = require('./search')
 const send = require('./send')
 
@@ -19,6 +20,11 @@ const router = [
     handler: send,
     cronTime: '0 0 * * * *',
     onePerUser: true
+  },
+  {
+    name: 'Convidar para vigiar algum assunto',
+    handler: inviteToWatch,
+    cronTime: '0 0 15 * * 1'
   }
 ]
 
