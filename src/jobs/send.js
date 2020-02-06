@@ -1,8 +1,4 @@
-const cron = require('cron')
-
-const cronTime = '0 */30 * * * *'
-
-const send = (userId, { repositories, bot }) => new cron.CronJob(cronTime, async () => {
+const send = (userId, { repositories, bot }) => async () => {
   try {
     const user = await repositories.user.getById(userId)
 
@@ -17,6 +13,6 @@ const send = (userId, { repositories, bot }) => new cron.CronJob(cronTime, async
   } catch (error) {
     throw new Error(error)
   }
-}).start()
+}
 
 module.exports = send

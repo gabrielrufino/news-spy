@@ -1,9 +1,6 @@
-const cron = require('cron')
 const dayjs = require('dayjs')
 
-const cronTime = '0 0 7,10,12,15,18,21 * * *'
-
-const search = (userId, { repositories, services }) => new cron.CronJob(cronTime, async () => {
+const search = (userId, { repositories, services }) => async () => {
   try {
     const user = await repositories.user.getById(userId)
     const urls = user.news.map(news => news.url)
@@ -38,6 +35,6 @@ const search = (userId, { repositories, services }) => new cron.CronJob(cronTime
   } catch (error) {
     throw new Error(error)
   }
-}).start()
+}
 
 module.exports = search
