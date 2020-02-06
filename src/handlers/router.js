@@ -1,4 +1,5 @@
 const broadcast = require('./broadcast')
+const direct = require('./direct')
 const frequency = require('./frequency')
 const search = require('./search')
 const start = require('./start')
@@ -9,6 +10,13 @@ const router = [
     command: 'broadcast',
     description: 'Transmite uma mensagem para todos os usário do bot',
     handler: broadcast,
+    secret: true
+  },
+  {
+    admin: true,
+    command: 'direct',
+    description: 'Envia uma mensagem direta para um usuário',
+    handler: direct,
     secret: true
   },
   {
