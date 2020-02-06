@@ -43,7 +43,7 @@ const router = [
     admin: true,
     command: 'users',
     description: 'Lista os usuários da base',
-    handler: users,
+    handler: users
   }
 ]
 
