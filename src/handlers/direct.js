@@ -11,10 +11,10 @@ const direct = ({ bot, repositories }) => async context => {
   } else {
     try {
       const user = await repositories.user.getByTelegramUsername(username)
-  
+
       if (user) {
         const { id, first_name: firstName } = user.telegram
-  
+
         await bot.telegram.sendMessage(id, message.join(' '))
         context.reply(`Mensagem direta enviada para ${firstName}.`)
       } else {
