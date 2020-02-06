@@ -16,7 +16,7 @@ const router = [
     admin: true,
     command: 'direct',
     description: 'Envia uma mensagem direta para um usuário',
-    handler: direct,
+    handler: direct
   },
   {
     command: 'frequency',
