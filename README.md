@@ -1,5 +1,5 @@
 # news-spy
-Chatbot espião de notícias que monitora notícias de seu interesse e as envia em ordem de relevância
+Chatbot espião de notícias que vigia notícias de seu interesse e as envia em ordem de relevância
 
 ## Frequências possíveis
 
