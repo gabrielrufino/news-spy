@@ -5,6 +5,7 @@ const search = require('./search')
 const start = require('./start')
 const spy = require('./spy')
 const subjects = require('./subjects')
+const unfollow = require('./unfollow')
 const users = require('./users')
 
 const router = [
@@ -37,13 +38,18 @@ const router = [
   },
   {
     command: 'spy',
-    description: 'Começa a vigiar um tema especificado',
+    description: 'Começa a vigiar um assunto especificado',
     handler: spy
   },
   {
     command: 'subjects',
     description: 'Lista todos os assuntos vigiados',
     handler: subjects
+  },
+  {
+    command: 'unfollow',
+    description: 'Deixa de vigiar um assunto especificado',
+    handler: unfollow,
   },
   {
     admin: true,

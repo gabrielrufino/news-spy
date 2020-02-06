@@ -88,6 +88,17 @@ module.exports = db => {
     }
   }
 
+  const removeSubject = async (id, subject) => {
+    try {
+      await users.updateOne(
+        { _id: ObjectID(id) },
+        { $pull: { subjects: subject } }
+      )
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
   const pushMessage = async (id, message) => {
     try {
       await users.updateOne(
@@ -141,6 +152,7 @@ module.exports = db => {
     getByTelegramUsername,
     getById,
     pushSubject,
+    removeSubject,
     pushMessage,
     pushNews,
     updateField,
