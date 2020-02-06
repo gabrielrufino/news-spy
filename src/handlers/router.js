@@ -43,7 +43,7 @@ const router = [
   {
     command: 'subjects',
     description: 'Lista todos os assuntos vigiados',
-    handler: subjects,
+    handler: subjects
   },
   {
     admin: true,
