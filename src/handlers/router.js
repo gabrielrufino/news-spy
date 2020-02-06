@@ -4,6 +4,7 @@ const frequency = require('./frequency')
 const search = require('./search')
 const start = require('./start')
 const spy = require('./spy')
+const users = require('./users')
 
 const router = [
   {
@@ -37,6 +38,12 @@ const router = [
     command: 'spy',
     description: 'Começa a espionar um tema especificado',
     handler: spy
+  },
+  {
+    admin: true,
+    command: 'users',
+    description: 'Lista os usuários da base',
+    handler: users,
   }
 ]
 
