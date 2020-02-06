@@ -7,17 +7,16 @@ const spy = require('./spy')
 
 const router = [
   {
+    admin: true,
     command: 'broadcast',
     description: 'Transmite uma mensagem para todos os usário do bot',
-    handler: broadcast,
-    secret: true
+    handler: broadcast
   },
   {
     admin: true,
     command: 'direct',
     description: 'Envia uma mensagem direta para um usuário',
     handler: direct,
-    secret: true
   },
   {
     command: 'frequency',
