@@ -1,18 +1,25 @@
-const search = require('./search')
-const send = require('./send')
+const { CronJob } = require('cron')
 
-const jobs = async ({ repositories, bot, services }) => {
+const router = require('./router')
+
+const jobs = async ({ bot, repositories, services }) => {
   const users = await repositories.user.getAll()
+  const jobsPerUser = router.filter(route => route.onePerUser)
 
   users.forEach(user => {
-    search(user._id, { repositories, services })
-    send(user._id, { repositories, bot })
+    jobsPerUser.forEach(job => {
+      const handler = job.handler(user._id, { bot, repositories, services })
+      const cronJob = new CronJob(job.cronTime, handler, null, false, 'America/Sao_Paulo')
+      cronJob.start()
+    })
   })
 
-  return {
-    send,
-    search
-  }
+  const generalJobs = router.filter(route => !route.onePerUser)
+  generalJobs.forEach(job => {
+    const handler = job.handler({ bot, repositories, services })
+    const cronJob = new CronJob(job.cronTime, handler, null, false, 'America/Sao_Paulo')
+    cronJob.start()
+  })
 }
 
 module.exports = jobs

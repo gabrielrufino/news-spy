@@ -50,14 +50,15 @@ module.exports = db => {
             is_bot: data.is_bot,
             first_name: data.first_name,
             last_name: data.last_name,
-            username: 'gabrielrufino',
+            username: data.username,
             language_code: 'en'
           },
           settings: {
             frequency: 'every-hour'
           },
           subjects: [],
-          messages: []
+          messages: [],
+          news: []
         })
       }
     } catch (error) {
@@ -81,6 +82,17 @@ module.exports = db => {
       await users.updateOne(
         { _id: ObjectID(id) },
         { $addToSet: { subjects: subject } }
+      )
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  const removeSubject = async (id, subject) => {
+    try {
+      await users.updateOne(
+        { _id: ObjectID(id) },
+        { $pull: { subjects: subject } }
       )
     } catch (error) {
       throw new Error(error)
@@ -122,6 +134,17 @@ module.exports = db => {
     }
   }
 
+  const clearNews = async () => {
+    try {
+      await users.updateMany(
+        {},
+        { $set: { news: [] } }
+      )
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
   return {
     createIfNotExists,
     getAll,
@@ -129,9 +152,11 @@ module.exports = db => {
     getByTelegramUsername,
     getById,
     pushSubject,
+    removeSubject,
     pushMessage,
     pushNews,
     updateField,
-    setNewsAsSent
+    setNewsAsSent,
+    clearNews
   }
 }

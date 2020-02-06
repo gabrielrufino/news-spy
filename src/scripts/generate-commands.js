@@ -1,7 +1,7 @@
 const router = require('../handlers/router')
 
 const commands = router
-  .filter(({ secret }) => !secret)
+  .filter(({ admin }) => !admin)
   .map(({ command, description }) => `${command} - ${description}`)
 
 const output = commands.join('\n')
