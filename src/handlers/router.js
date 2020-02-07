@@ -66,7 +66,7 @@ const router = [
     description: 'Inicia conversa com o Bot',
     handler: start,
     hidden: true
-  },
+  }
 ]
 
 module.exports = router
