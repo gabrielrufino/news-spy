@@ -10,38 +10,6 @@ const users = require('./users')
 
 const router = [
   {
-    admin: true,
-    command: 'transmitir',
-    alternatives: ['broadcast'],
-    description: 'Transmite uma mensagem para todos os usário do bot',
-    handler: broadcast
-  },
-  {
-    admin: true,
-    command: 'enviar',
-    alternatives: ['direct'],
-    description: 'Envia uma mensagem direta para um usuário',
-    handler: direct
-  },
-  {
-    command: 'frequencia',
-    alternatives: ['frequency'],
-    description: 'Define a frequência que o usuário deseja receber notícias',
-    handler: frequency
-  },
-  {
-    command: 'buscar',
-    alternatives: ['search'],
-    description: 'Busca por notícias de um tema específico',
-    handler: search
-  },
-  {
-    command: 'start',
-    alternatives: ['iniciar'],
-    description: 'Inicia conversa com o Bot',
-    handler: start
-  },
-  {
     command: 'vigiar',
     alternatives: ['watch'],
     description: 'Começa a vigiar um assunto especificado',
@@ -60,12 +28,45 @@ const router = [
     handler: unfollow
   },
   {
+    command: 'frequencia',
+    alternatives: ['frequency'],
+    description: 'Define a frequência que o usuário deseja receber notícias',
+    handler: frequency
+  },
+  {
+    command: 'buscar',
+    alternatives: ['search'],
+    description: 'Busca por notícias de um tema específico',
+    handler: search
+  },
+  {
+    admin: true,
+    command: 'transmitir',
+    alternatives: ['broadcast'],
+    description: 'Transmite uma mensagem para todos os usário do bot',
+    handler: broadcast
+  },
+  {
+    admin: true,
+    command: 'enviar',
+    alternatives: ['direct'],
+    description: 'Envia uma mensagem direta para um usuário',
+    handler: direct
+  },
+  {
     admin: true,
     command: 'usuarios',
     alternatives: ['users'],
     description: 'Lista os usuários da base',
     handler: users
-  }
+  },
+  {
+    command: 'start',
+    alternatives: ['iniciar'],
+    description: 'Inicia conversa com o Bot',
+    handler: start,
+    hidden: true
+  },
 ]
 
 module.exports = router
