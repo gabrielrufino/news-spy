@@ -5,6 +5,8 @@ env_variables:
   BOT_TOKEN: # BOT Token
   NEWS_API_TOKEN: # Token of the
   DATABASE_URL: # URL of the database
+  DATABASE_NAME: db_news_spy
+  PORT: 8080
 
 manual_scaling:
   instances: 1
