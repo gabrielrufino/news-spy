@@ -3,9 +3,9 @@ const { ObjectID } = require('mongodb')
 module.exports = db => {
   const users = db.collection('users')
 
-  const getAll = async () => {
+  const getAll = async (filters = {}) => {
     try {
-      return await users.find()
+      return await users.find(filters)
     } catch (error) {
       throw new Error(error)
     }
