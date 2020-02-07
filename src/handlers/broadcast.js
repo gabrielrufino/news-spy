@@ -4,11 +4,16 @@ const broadcast = ({ repositories, bot }) => async context => {
 
     const { argument: text } = context.state
 
-    users.forEach(user => {
-      bot.telegram.sendMessage(user.telegram.id, text)
-    })
+    if (!text) {
+      context.reply('A trasmissão precisa de uma mensagem. Use da seguinte forma: "/transmitir [mensagem]"')
+    } else {
+      users.forEach(user => {
+        bot.telegram.sendMessage(user.telegram.id, text)
+      })
+  
+      context.reply('Transmitirei essa mensagem para todos os nossos usuários.')
+    }
 
-    context.reply('Deixa comigo')
   } catch (error) {
     throw new Error(error)
   }
