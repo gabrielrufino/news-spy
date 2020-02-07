@@ -1,3 +1,4 @@
+const api = require('./api')
 const events = require('./events')
 const handlers = require('./handlers')
 const jobs = require('./jobs')
@@ -6,6 +7,7 @@ const middlewares = require('./middlewares')
 const app = ({ bot, repositories }) => {
   const services = require('./services')
 
+  api()
   events({ bot })
   middlewares({ bot, repositories })
   handlers({ bot, repositories, services })
