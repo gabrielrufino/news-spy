@@ -5,7 +5,7 @@ const search = require('./search')
 const start = require('./start')
 const watch = require('./watch')
 const subjects = require('./subjects')
-const unfollow = require('./unfollow')
+const unwatch = require('./unwatch')
 const users = require('./users')
 
 const router = [
@@ -25,7 +25,7 @@ const router = [
     command: 'deixar',
     alternatives: ['unwatch'],
     description: 'Deixa de vigiar um assunto especificado',
-    handler: unfollow
+    handler: unwatch
   },
   {
     command: 'frequencia',
