@@ -8,7 +8,7 @@ const spy = ({ repositories }) => context => {
   } else {
     const userId = context.state.user_id
     repositories.user.pushSubject(userId, expression)
-  
+
     context.reply(`Deixe comigo! Eu vou vigiar notícias relacionadas à ${expression} para você.`)
   }
 }

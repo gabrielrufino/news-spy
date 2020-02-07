@@ -18,7 +18,7 @@ const search = ({ services }) => context => {
       .then(({ data }) => {
         const news = data.articles.map(news => `${news.title}\n${news.url}\n\n`)
         const response = news.join('')
-  
+
         if (response) {
           context.reply(response)
         } else {
