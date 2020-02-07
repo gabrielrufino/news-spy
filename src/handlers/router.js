@@ -3,7 +3,7 @@ const direct = require('./direct')
 const frequency = require('./frequency')
 const search = require('./search')
 const start = require('./start')
-const spy = require('./spy')
+const watch = require('./watch')
 const subjects = require('./subjects')
 const unfollow = require('./unfollow')
 const users = require('./users')
@@ -13,7 +13,7 @@ const router = [
     command: 'vigiar',
     alternatives: ['watch'],
     description: 'Começa a vigiar um assunto especificado',
-    handler: spy
+    handler: watch
   },
   {
     command: 'vigiados',

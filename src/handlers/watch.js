@@ -1,6 +1,6 @@
 const helpers = require('../helpers')
 
-const spy = ({ repositories }) => context => {
+const watch = ({ repositories }) => context => {
   const expression = helpers.removeCommand(context.message.text)
 
   if (!expression) {
@@ -13,4 +13,4 @@ const spy = ({ repositories }) => context => {
   }
 }
 
-module.exports = spy
+module.exports = watch
