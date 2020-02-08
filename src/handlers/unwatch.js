@@ -1,6 +1,6 @@
 const helpers = require('../helpers')
 
-const unfollow = ({ repositories }) => async context => {
+const unwatch = ({ repositories }) => async context => {
   const subject = helpers.removeCommand(context.update.message.text)
 
   if (!subject) {
@@ -18,4 +18,4 @@ const unfollow = ({ repositories }) => async context => {
   }
 }
 
-module.exports = unfollow
+module.exports = unwatch
