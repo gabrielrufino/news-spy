@@ -18,7 +18,7 @@ const send = (userId, { bot, repositories, services }) => async () => {
       newsWithSentiment.sort((newsA, newsB) => {
         const sentimentA = Math.abs(newsA.sentiment)
         const sentimentB = Math.abs(newsB.sentiment)
-  
+
         return sentimentB - sentimentA
       })
 
