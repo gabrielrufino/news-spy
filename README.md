@@ -10,3 +10,7 @@ Chatbot espião de notícias que vigia notícias de seu interesse e as envia em 
 - Semanal (`every-week`)
 
 default: `every-hour`
+
+## Como posso contribuir com o projeto?
+
+Preparamos um manual para quem deseja contribuir com o projeto. [Clique aqui!](docs/CONTRIBUTING.md)
