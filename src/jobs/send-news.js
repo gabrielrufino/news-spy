@@ -1,4 +1,4 @@
-const send = (userId, { bot, repositories, services }) => async () => {
+const sendNews = (userId, { bot, repositories, services }) => async () => {
   try {
     const user = await repositories.user.getById(userId)
 
@@ -27,12 +27,18 @@ const send = (userId, { bot, repositories, services }) => async () => {
       const news = allNews.find(news => news.title === mostImportantNews.document)
       const index = allNews.indexOf(news)
 
-      bot.telegram.sendMessage(user.telegram.id, `${news.title}\n\n${news.url}`)
+      await bot.telegram.sendMessage(user.telegram.id, `${news.title}\n\n${news.url}`)
       repositories.user.setNewsAsSent(userId, index)
+
+      bot.telegram.sendPoll(
+        user.telegram.id,
+        `Me ajude a melhorar! Quão relevante essa notícia foi para o assunto "${news.subject}"?`,
+        ['Pouco relevante', 'Razoavelmente relevante', 'Muito relevante']
+      )
     }
   } catch (error) {
     throw new Error(error)
   }
 }
 
-module.exports = send
+module.exports = sendNews

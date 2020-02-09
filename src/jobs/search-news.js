@@ -1,20 +1,22 @@
 const dayjs = require('dayjs')
 
-const search = (userId, { repositories, services }) => async () => {
+const searchNews = (userId, { repositories, services }) => async () => {
   try {
     const user = await repositories.user.getById(userId)
     const urls = user.news.map(news => news.url)
 
     const { NEWS_API_TOKEN } = process.env
 
+    const today = dayjs().format('YYYY-MM-DD')
+
     user.subjects.forEach(async subject => {
       try {
         const { data } = await services.news.get('top-headlines', {
           params: {
+            apiKey: NEWS_API_TOKEN,
             q: subject,
-            from: dayjs().format('YYYY-MM-DD'),
-            to: dayjs().format('YYYY-MM-DD'),
-            apiKey: NEWS_API_TOKEN
+            from: today,
+            to: today
           }
         })
 
@@ -37,4 +39,4 @@ const search = (userId, { repositories, services }) => async () => {
   }
 }
 
-module.exports = search
+module.exports = searchNews

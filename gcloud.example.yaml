@@ -8,5 +8,6 @@ env_variables:
   DATABASE_NAME: db_news_spy
   PORT: 8080
 
+instance_class: B1
 manual_scaling:
   instances: 1

@@ -11,11 +11,15 @@
 # from your .gitignore file, remove the corresponding line
 # below:
 .env
+.env.development
 .git
 .github/
 .gitignore
 Procfile
+coverage/
 docker-compose.yml
+docs/
+gcloud.example.yaml
 tests/
 nodemon.json
 

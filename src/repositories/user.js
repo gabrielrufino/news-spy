@@ -45,6 +45,7 @@ module.exports = db => {
 
       if (!user) {
         await users.insertOne({
+          admin: false,
           telegram: {
             id: data.id,
             is_bot: data.is_bot,

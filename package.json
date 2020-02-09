@@ -41,7 +41,8 @@
     "express": "^4.17.1",
     "forever": "^2.0.0",
     "mongodb": "^3.3.3",
-    "telegraf": "^3.32.0"
+    "sleep-promise": "^8.0.1",
+    "telegraf": "^3.36.0"
   },
   "devDependencies": {
     "git-branch-is": "^3.1.0",
