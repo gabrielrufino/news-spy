@@ -1,6 +1,6 @@
 const userId = ({ repositories }) => async (context, next) => {
   const { message } = context.update
-  
+
   if (message) {
     const { id } = message.from
 
@@ -9,7 +9,6 @@ const userId = ({ repositories }) => async (context, next) => {
       context.state.user_id = user._id
     }
   }
-
 
   next()
 }
