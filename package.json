@@ -41,6 +41,7 @@
     "express": "^4.17.1",
     "forever": "^2.0.0",
     "mongodb": "^3.3.3",
+    "sleep-promise": "^8.0.1",
     "telegraf": "^3.36.0"
   },
   "devDependencies": {
