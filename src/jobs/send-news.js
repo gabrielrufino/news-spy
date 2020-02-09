@@ -1,4 +1,4 @@
-const send = (userId, { bot, repositories, services }) => async () => {
+const sendNews = (userId, { bot, repositories, services }) => async () => {
   try {
     const user = await repositories.user.getById(userId)
 
@@ -35,4 +35,4 @@ const send = (userId, { bot, repositories, services }) => async () => {
   }
 }
 
-module.exports = send
+module.exports = sendNews

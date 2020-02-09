@@ -1,6 +1,6 @@
 const clearNews = require('./clear-news')
-const search = require('./search')
-const send = require('./send')
+const searchNews = require('./search-news')
+const sendNews = require('./send-news')
 const sendNote = require('./send-note')
 
 const router = [
@@ -11,13 +11,13 @@ const router = [
   },
   {
     name: 'Buscar notícias',
-    handler: search,
+    handler: searchNews,
     cronTime: '0 0 7,10,12,15,18,21 * * *',
     onePerUser: true
   },
   {
     name: 'Enviar notícia',
-    handler: send,
+    handler: sendNews,
     cronTime: '0 0 * * * *',
     onePerUser: true
   },
