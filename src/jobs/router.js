@@ -18,7 +18,7 @@ const router = [
   {
     name: 'Enviar notícia',
     handler: sendNews,
-    cronTime: '0 0 * * * *',
+    cronTime: '0 0 6-23 * * *',
     onePerUser: true
   },
   ...sendNote.notes.map(note => ({
