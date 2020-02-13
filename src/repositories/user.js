@@ -97,7 +97,7 @@ module.exports = db => {
           $pull: {
             subjects: subject,
             news: { subject }
-          },
+          }
         }
       )
     } catch (error) {
