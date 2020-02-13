@@ -12,7 +12,7 @@
     "postdeploy:gcloud": "npm run generate:commands",
     "postdeploy:heroku": "npm run generate:commands",
     "predev": "docker-compose up -d",
-    "standard": "standard",
+    "standard": "standard --env jest",
     "start": "forever -o /tmp/output.log -e /tmp/errors.log index.js",
     "test": "jest --passWithNoTests"
   },
