@@ -3,6 +3,7 @@ const direct = require('./direct')
 const frequency = require('./frequency')
 const search = require('./search')
 const start = require('./start')
+const support = require('./support')
 const watch = require('./watch')
 const subjects = require('./subjects')
 const unwatch = require('./unwatch')
@@ -38,6 +39,12 @@ const router = [
     alternatives: ['search'],
     description: 'Busca por notícias de um tema específico',
     handler: search
+  },
+  {
+    command: 'suporte',
+    alternatives: ['support'],
+    description: 'Obter ajuda ou reportar problema ao suporte',
+    handler: support
   },
   {
     admin: true,
