@@ -93,7 +93,12 @@ module.exports = db => {
     try {
       await users.updateOne(
         { _id: ObjectID(id) },
-        { $pull: { subjects: subject } }
+        {
+          $pull: {
+            subjects: subject,
+            news: { subject }
+          },
+        }
       )
     } catch (error) {
       throw new Error(error)
