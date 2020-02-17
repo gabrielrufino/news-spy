@@ -33,7 +33,10 @@ const sendNews = (userId, { bot, repositories, services }) => async () => {
       bot.telegram.sendPoll(
         user.telegram.id,
         `Me ajude a melhorar! Quão relevante essa notícia foi para o assunto "${news.subject}"?`,
-        ['Pouco relevante', 'Razoavelmente relevante', 'Muito relevante']
+        ['Pouco relevante', 'Razoavelmente relevante', 'Muito relevante'],
+        {
+          is_anonymous: false
+        }
       )
     }
   } catch (error) {
