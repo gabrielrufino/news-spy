@@ -52,7 +52,7 @@ module.exports = db => {
             first_name: data.first_name,
             last_name: data.last_name,
             username: data.username,
-            language_code: 'en'
+            language_code: data.language_code
           },
           settings: {
             frequency: 'every-hour'
