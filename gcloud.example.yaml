@@ -1,6 +1,7 @@
 runtime: nodejs12
 
 env_variables:
+  ENV: production
   ALGORITHMIA_API_KEY: # Algorithmia API Key
   BOT_TOKEN: # BOT Token
   NEWS_API_TOKEN: # Token of the
