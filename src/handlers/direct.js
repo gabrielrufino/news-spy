@@ -21,7 +21,10 @@ const direct = ({ bot, repositories }) => async context => {
         context.reply(`Usuário com username ${username} não encontrado! 🚫`)
       }
     } catch (error) {
-      throw new Error(error)
+      const feedback = 'Houve um erro ao enviar a mensagem'
+
+      context.reply(feedback)
+      console.error(feedback)
     }
   }
 }
