@@ -72,7 +72,7 @@ module.exports = db => {
     try {
       const user = await users.findOne({ _id: ObjectID(userId) })
 
-      return user.news.find(newsId)
+      return user.news.find(news => ObjectID(news.id).equals(newsId))
     } catch (error) {
       throw new Error(error)
     }
@@ -144,6 +144,17 @@ module.exports = db => {
     }
   }
 
+  const pushFeedback = async (id, feedback) => {
+    try {
+      await users.updateOne(
+        { _id: ObjectID(id) },
+        { $push: { feedbacks: feedback } }
+      )
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
   const setNewsAsSent = async (id, position) => {
     const key = `news.${position}.sent`
 
@@ -176,6 +187,7 @@ module.exports = db => {
     getById,
     getNewsById,
     pushSubject,
+    pushFeedback,
     removeSubject,
     pushMessage,
     pushNews,
