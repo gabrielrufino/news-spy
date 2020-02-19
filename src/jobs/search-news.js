@@ -18,7 +18,7 @@ const searchNews = (userId, { repositories, services }) => async () => {
             from: today,
             to: today,
             language: user.settings.news_languages.join(','),
-            sortBy: 'relevancy',
+            sortBy: 'relevancy'
           }
         })
 
