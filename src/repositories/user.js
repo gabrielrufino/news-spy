@@ -67,6 +67,16 @@ module.exports = db => {
     }
   }
 
+  const getNewsById = async (userId, newsId) => {
+    try {
+      const user = await users.findOne({ _id: ObjectID(userId) })
+
+      return user.news.find(newsId)
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
   const updateField = async (id, field, value) => {
     try {
       await users.updateOne(
@@ -163,6 +173,7 @@ module.exports = db => {
     getByTelegramId,
     getByTelegramUsername,
     getById,
+    getNewsById,
     pushSubject,
     removeSubject,
     pushMessage,
