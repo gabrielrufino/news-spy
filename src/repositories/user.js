@@ -52,7 +52,7 @@ module.exports = db => {
             first_name: data.first_name,
             last_name: data.last_name,
             username: data.username,
-            language_code: 'en'
+            language_code: data.language_code
           },
           settings: {
             frequency: 'every-hour'
@@ -62,6 +62,16 @@ module.exports = db => {
           news: []
         })
       }
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  const getNewsById = async (userId, newsId) => {
+    try {
+      const user = await users.findOne({ _id: ObjectID(userId) })
+
+      return user.news.find(newsId)
     } catch (error) {
       throw new Error(error)
     }
@@ -120,7 +130,13 @@ module.exports = db => {
     try {
       await users.updateOne(
         { _id: ObjectID(id) },
-        { $push: { news: Array.isArray(news) ? { $each: news } : news } }
+        {
+          $push: {
+            news: Array.isArray(news)
+              ? { $each: news.map(n => ({ id: ObjectID(), ...n })) }
+              : { id: ObjectID(), ...news }
+          }
+        }
       )
     } catch (error) {
       throw new Error(error)
@@ -157,6 +173,7 @@ module.exports = db => {
     getByTelegramId,
     getByTelegramUsername,
     getById,
+    getNewsById,
     pushSubject,
     removeSubject,
     pushMessage,
