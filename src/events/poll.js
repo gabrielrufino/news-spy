@@ -1,3 +1,3 @@
-const poll = async context => {}
+const poll = () => async context => {}
 
 module.exports = poll

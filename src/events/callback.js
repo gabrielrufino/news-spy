@@ -1,4 +1,4 @@
-const callback = context => {
+const callback = () =>  context => {
   context.editMessageReplyMarkup({ inline_keyboard: [] })
 }
 

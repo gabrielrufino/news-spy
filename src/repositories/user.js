@@ -59,7 +59,8 @@ module.exports = db => {
           },
           subjects: [],
           messages: [],
-          news: []
+          news: [],
+          feedbacks: []
         })
       }
     } catch (error) {
