@@ -55,7 +55,9 @@ module.exports = db => {
             language_code: data.language_code
           },
           settings: {
-            frequency: 'every-hour'
+            frequency: 'every-hour',
+            language: 'pt',
+            news_languages: ['pt']
           },
           subjects: [],
           messages: [],
