@@ -120,7 +120,13 @@ module.exports = db => {
     try {
       await users.updateOne(
         { _id: ObjectID(id) },
-        { $push: { news: Array.isArray(news) ? { $each: news } : news } }
+        {
+          $push: {
+            news: Array.isArray(news)
+              ? { $each: news.map(n => ({ id: ObjectID(), ...n })) }
+              : { id: ObjectID(), ...news }
+          }
+        }
       )
     } catch (error) {
       throw new Error(error)
