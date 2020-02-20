@@ -11,12 +11,14 @@ const searchNews = (userId, { repositories, services }) => async () => {
 
     user.subjects.forEach(async subject => {
       try {
-        const { data } = await services.news.get('top-headlines', {
+        const { data } = await services.news.get('everything', {
           params: {
             apiKey: NEWS_API_TOKEN,
             q: subject,
             from: today,
-            to: today
+            to: today,
+            language: user.settings.news_languages.join(','),
+            sortBy: 'relevancy'
           }
         })
 

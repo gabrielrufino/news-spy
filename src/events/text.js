@@ -1,4 +1,4 @@
-const text = async (context, next) => {
+const text = () => async (context, next) => {
   const txt = context.update.message.text
 
   if (!txt.startsWith('/')) {

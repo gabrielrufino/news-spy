@@ -1,7 +1,6 @@
 const broadcast = require('./broadcast')
 const direct = require('./direct')
 const frequency = require('./frequency')
-const search = require('./search')
 const start = require('./start')
 const support = require('./support')
 const watch = require('./watch')
@@ -33,12 +32,6 @@ const router = [
     alternatives: ['frequency'],
     description: 'Define a frequência que o usuário deseja receber notícias',
     handler: frequency
-  },
-  {
-    command: 'buscar',
-    alternatives: ['search'],
-    description: 'Busca por notícias de um tema específico',
-    handler: search
   },
   {
     command: 'suporte',

@@ -3,6 +3,48 @@ const { ObjectID } = require('mongodb')
 module.exports = db => {
   const users = db.collection('users')
 
+  const clearNews = async () => {
+    try {
+      await users.updateMany(
+        {},
+        { $set: { news: [] } }
+      )
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  const createIfNotExists = async data => {
+    try {
+      const user = await users.findOne({ 'telegram.id': data.id })
+
+      if (!user) {
+        await users.insertOne({
+          admin: false,
+          telegram: {
+            id: data.id,
+            is_bot: data.is_bot,
+            first_name: data.first_name,
+            last_name: data.last_name,
+            username: data.username,
+            language_code: data.language_code
+          },
+          settings: {
+            frequency: 'every-hour',
+            language: 'pt',
+            news_languages: ['pt']
+          },
+          subjects: [],
+          messages: [],
+          news: [],
+          feedbacks: []
+        })
+      }
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
   const getAll = async (filters = {}) => {
     try {
       return await users.find(filters)
@@ -39,76 +81,21 @@ module.exports = db => {
     }
   }
 
-  const createIfNotExists = async data => {
-    try {
-      const user = await users.findOne({ 'telegram.id': data.id })
-
-      if (!user) {
-        await users.insertOne({
-          admin: false,
-          telegram: {
-            id: data.id,
-            is_bot: data.is_bot,
-            first_name: data.first_name,
-            last_name: data.last_name,
-            username: data.username,
-            language_code: data.language_code
-          },
-          settings: {
-            frequency: 'every-hour'
-          },
-          subjects: [],
-          messages: [],
-          news: []
-        })
-      }
-    } catch (error) {
-      throw new Error(error)
-    }
-  }
-
   const getNewsById = async (userId, newsId) => {
     try {
       const user = await users.findOne({ _id: ObjectID(userId) })
 
-      return user.news.find(newsId)
+      return user.news.find(news => ObjectID(news.id).equals(newsId))
     } catch (error) {
       throw new Error(error)
     }
   }
 
-  const updateField = async (id, field, value) => {
-    try {
-      await users.updateOne(
-        { 'telegram.id': id },
-        { $set: { [field]: value } }
-      )
-    } catch (error) {
-      throw new Error(error)
-    }
-  }
-
-  const pushSubject = async (id, subject) => {
+  const pushFeedback = async (id, feedback) => {
     try {
       await users.updateOne(
         { _id: ObjectID(id) },
-        { $addToSet: { subjects: subject } }
-      )
-    } catch (error) {
-      throw new Error(error)
-    }
-  }
-
-  const removeSubject = async (id, subject) => {
-    try {
-      await users.updateOne(
-        { _id: ObjectID(id) },
-        {
-          $pull: {
-            subjects: subject,
-            news: { subject }
-          }
-        }
+        { $push: { feedbacks: feedback } }
       )
     } catch (error) {
       throw new Error(error)
@@ -143,6 +130,33 @@ module.exports = db => {
     }
   }
 
+  const pushSubject = async (id, subject) => {
+    try {
+      await users.updateOne(
+        { _id: ObjectID(id) },
+        { $addToSet: { subjects: subject } }
+      )
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  const removeSubject = async (id, subject) => {
+    try {
+      await users.updateOne(
+        { _id: ObjectID(id) },
+        {
+          $pull: {
+            subjects: subject,
+            news: { subject }
+          }
+        }
+      )
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
   const setNewsAsSent = async (id, position) => {
     const key = `news.${position}.sent`
 
@@ -156,11 +170,11 @@ module.exports = db => {
     }
   }
 
-  const clearNews = async () => {
+  const updateField = async (id, field, value) => {
     try {
-      await users.updateMany(
-        {},
-        { $set: { news: [] } }
+      await users.updateOne(
+        { 'telegram.id': id },
+        { $set: { [field]: value } }
       )
     } catch (error) {
       throw new Error(error)
@@ -168,18 +182,19 @@ module.exports = db => {
   }
 
   return {
+    clearNews,
     createIfNotExists,
     getAll,
+    getById,
     getByTelegramId,
     getByTelegramUsername,
-    getById,
     getNewsById,
-    pushSubject,
-    removeSubject,
+    pushFeedback,
     pushMessage,
     pushNews,
-    updateField,
+    pushSubject,
+    removeSubject,
     setNewsAsSent,
-    clearNews
+    updateField
   }
 }
