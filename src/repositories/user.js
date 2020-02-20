@@ -3,37 +3,12 @@ const { ObjectID } = require('mongodb')
 module.exports = db => {
   const users = db.collection('users')
 
-  const getAll = async (filters = {}) => {
+  const clearNews = async () => {
     try {
-      return await users.find(filters)
-    } catch (error) {
-      throw new Error(error)
-    }
-  }
-
-  const getById = async id => {
-    try {
-      return await users.findOne({ _id: ObjectID(id) })
-    } catch (error) {
-      throw new Error(error)
-    }
-  }
-
-  const getByTelegramId = async id => {
-    try {
-      const user = await users.findOne({ 'telegram.id': id })
-
-      return user
-    } catch (error) {
-      throw new Error(error)
-    }
-  }
-
-  const getByTelegramUsername = async username => {
-    try {
-      const user = await users.findOne({ 'telegram.username': username })
-
-      return user
+      await users.updateMany(
+        {},
+        { $set: { news: [] } }
+      )
     } catch (error) {
       throw new Error(error)
     }
@@ -70,6 +45,42 @@ module.exports = db => {
     }
   }
 
+  const getAll = async (filters = {}) => {
+    try {
+      return await users.find(filters)
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  const getById = async id => {
+    try {
+      return await users.findOne({ _id: ObjectID(id) })
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  const getByTelegramId = async id => {
+    try {
+      const user = await users.findOne({ 'telegram.id': id })
+
+      return user
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  const getByTelegramUsername = async username => {
+    try {
+      const user = await users.findOne({ 'telegram.username': username })
+
+      return user
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
   const getNewsById = async (userId, newsId) => {
     try {
       const user = await users.findOne({ _id: ObjectID(userId) })
@@ -80,38 +91,11 @@ module.exports = db => {
     }
   }
 
-  const updateField = async (id, field, value) => {
-    try {
-      await users.updateOne(
-        { 'telegram.id': id },
-        { $set: { [field]: value } }
-      )
-    } catch (error) {
-      throw new Error(error)
-    }
-  }
-
-  const pushSubject = async (id, subject) => {
+  const pushFeedback = async (id, feedback) => {
     try {
       await users.updateOne(
         { _id: ObjectID(id) },
-        { $addToSet: { subjects: subject } }
-      )
-    } catch (error) {
-      throw new Error(error)
-    }
-  }
-
-  const removeSubject = async (id, subject) => {
-    try {
-      await users.updateOne(
-        { _id: ObjectID(id) },
-        {
-          $pull: {
-            subjects: subject,
-            news: { subject }
-          }
-        }
+        { $push: { feedbacks: feedback } }
       )
     } catch (error) {
       throw new Error(error)
@@ -146,11 +130,27 @@ module.exports = db => {
     }
   }
 
-  const pushFeedback = async (id, feedback) => {
+  const pushSubject = async (id, subject) => {
     try {
       await users.updateOne(
         { _id: ObjectID(id) },
-        { $push: { feedbacks: feedback } }
+        { $addToSet: { subjects: subject } }
+      )
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  const removeSubject = async (id, subject) => {
+    try {
+      await users.updateOne(
+        { _id: ObjectID(id) },
+        {
+          $pull: {
+            subjects: subject,
+            news: { subject }
+          }
+        }
       )
     } catch (error) {
       throw new Error(error)
@@ -170,11 +170,11 @@ module.exports = db => {
     }
   }
 
-  const clearNews = async () => {
+  const updateField = async (id, field, value) => {
     try {
-      await users.updateMany(
-        {},
-        { $set: { news: [] } }
+      await users.updateOne(
+        { 'telegram.id': id },
+        { $set: { [field]: value } }
       )
     } catch (error) {
       throw new Error(error)
@@ -182,19 +182,19 @@ module.exports = db => {
   }
 
   return {
+    clearNews,
     createIfNotExists,
     getAll,
+    getById,
     getByTelegramId,
     getByTelegramUsername,
-    getById,
     getNewsById,
-    pushSubject,
     pushFeedback,
-    removeSubject,
     pushMessage,
     pushNews,
-    updateField,
+    pushSubject,
+    removeSubject,
     setNewsAsSent,
-    clearNews
+    updateField
   }
 }
