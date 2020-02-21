@@ -1,7 +1,7 @@
 const user = require('./user')
 
-const repositories = db => ({
+const Repositories = db => ({
   user: user(db)
 })
 
-module.exports = repositories
+module.exports = Repositories

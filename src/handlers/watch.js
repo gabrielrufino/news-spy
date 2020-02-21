@@ -1,15 +1,19 @@
-const helpers = require('../helpers')
-
 const watch = ({ repositories }) => context => {
-  const expression = helpers.removeCommand(context.message.text)
+  const { step } = context.session
 
-  if (!expression) {
-    context.reply('Você especificar um assunto para ser vigiado. Por exemplo: "/vigiar [assunto]"')
-  } else {
-    const userId = context.state.user_id
-    repositories.user.pushSubject(userId, expression)
+  if (!step) {
+    context.session.handler = 'watch'
+    context.session.step = 2
+    context.reply('Me envie o assunto que você deseja vigiar')
+  } else if (step === 2) {
+    const subject = context.message.text
 
-    context.reply(`Deixe comigo! Eu vou vigiar notícias relacionadas à ${expression} para você.`)
+    const user = context.state.user
+    repositories.user.pushSubject(user._id, subject)
+
+    context.reply(`Deixe comigo! Eu vou vigiar notícias relacionadas à ${subject} para você.`)
+    context.session.handler = undefined
+    context.session.step = undefined
   }
 }
 

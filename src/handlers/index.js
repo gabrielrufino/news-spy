@@ -1,11 +1,16 @@
 const router = require('./router')
 
-const handlers = modules => {
+const Handlers = modules => {
   const { bot } = modules
 
-  router.forEach(({ alternatives, command, handler }) => {
+  const handlers = {}
+
+  router.forEach(({ alternatives, command, handler, name }) => {
     bot.command([command, ...alternatives], handler(modules))
+    handlers[name] = handler(modules)
   })
+
+  return handlers
 }
 
-module.exports = handlers
+module.exports = Handlers

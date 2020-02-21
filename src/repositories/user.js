@@ -19,7 +19,7 @@ module.exports = db => {
       const user = await users.findOne({ 'telegram.id': data.id })
 
       if (!user) {
-        await users.insertOne({
+        return await users.insertOne({
           admin: false,
           telegram: {
             id: data.id,
