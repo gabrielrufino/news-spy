@@ -1,17 +1,17 @@
 const api = require('./api')
 const events = require('./events')
 const handlers = require('./handlers')
-const jobs = require('./jobs')
+const Jobs = require('./jobs')
 const middlewares = require('./middlewares')
 
-const app = ({ bot, repositories }) => {
+const app = async ({ bot, repositories }) => {
   const services = require('./services')
 
   api()
   events({ bot, repositories })
   middlewares({ bot, repositories })
-  handlers({ bot, repositories, services })
-  jobs({ repositories, bot, services })
+  const jobs = await Jobs({ repositories, bot, services })
+  handlers({ bot, jobs, repositories, services })
 
   bot.launch()
     .then(() => {
