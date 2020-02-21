@@ -1,7 +1,11 @@
-const algorithmia = require('./algorithmia')
-const news = require('./news')
+const Services = () => {
+  const algorithmia = require('./algorithmia')
+  const news = require('./news')
 
-module.exports = {
-  algorithmia,
-  news
+  return {
+    algorithmia,
+    news
+  }
 }
+
+module.exports = Services
