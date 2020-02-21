@@ -1,8 +1,8 @@
 const router = require('./router')
 
-const Events = ({ bot, repositories }) => {
-  router.forEach(({ events, handler }) => {
-    bot.on(events, handler({ repositories }))
+const Events = ({ bot, handlers, repositories }) => {
+  router.forEach(({ events, listener }) => {
+    bot.on(events, listener({ handlers, repositories }))
   })
 }
 
