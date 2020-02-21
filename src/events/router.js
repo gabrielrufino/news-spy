@@ -6,19 +6,19 @@ const text = require('./text')
 const router = [
   {
     events: ['audio', 'voice'],
-    handler: audio
+    listener: audio
   },
   {
     events: ['callback_query'],
-    handler: callback
+    listener: callback
   },
   {
     events: ['poll'],
-    handler: poll
+    listener: poll
   },
   {
     events: ['text'],
-    handler: text
+    listener: text
   }
 ]
 
