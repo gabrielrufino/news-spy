@@ -6,13 +6,14 @@ const Middlewares = require('./middlewares')
 const Services = require('./services')
 
 const app = async ({ bot, repositories }) => {
+  Middlewares({ bot, repositories })
+
   const services = Services()
   const jobs = await Jobs({ repositories, bot, services })
   const handlers = Handlers({ bot, jobs, repositories, services })
 
-  Api()
-  Middlewares({ bot, repositories })
   Events({ bot, handlers, repositories })
+  Api()
 
   bot.launch()
     .then(() => {
