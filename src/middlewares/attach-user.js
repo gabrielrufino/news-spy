@@ -6,7 +6,7 @@ const userId = ({ repositories }) => async (context, next) => {
 
     const user = await repositories.user.getByTelegramId(id)
     if (user) {
-      context.state.user_id = user._id
+      context.state.user = user
     }
   }
 
