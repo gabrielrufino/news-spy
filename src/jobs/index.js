@@ -20,6 +20,16 @@ const jobs = async ({ bot, repositories, services }) => {
     const cronJob = new CronJob(job.cronTime, handler, null, false, 'America/Sao_Paulo')
     cronJob.start()
   })
+
+  return {
+    initUser: (userId) => {
+      jobsPerUser.forEach(job => {
+        const handler = job.handler(userId, { bot, repositories, services })
+        const cronJob = new CronJob(job.cronTime, handler, null, false, 'America/Sao_Paulo')
+        cronJob.start()
+      })
+    }
+  }
 }
 
 module.exports = jobs
