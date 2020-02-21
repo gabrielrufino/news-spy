@@ -6,7 +6,6 @@ const Middlewares = require('./middlewares')
 const Services = require('./services')
 
 const app = async ({ bot, repositories }) => {
-
   Api()
   Events({ bot, repositories })
   Middlewares({ bot, repositories })
