@@ -11,8 +11,8 @@ const app = async ({ bot, repositories }) => {
   const handlers = Handlers({ bot, jobs, repositories, services })
 
   Api()
-  Events({ bot, handlers, repositories })
   Middlewares({ bot, repositories })
+  Events({ bot, handlers, repositories })
 
   bot.launch()
     .then(() => {
