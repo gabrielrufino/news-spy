@@ -1,6 +1,6 @@
 const express = require('express')
 
-const api = () => {
+const Api = () => {
   const app = express()
 
   app.get('/', (_, response) => {
@@ -16,4 +16,4 @@ const api = () => {
   })
 }
 
-module.exports = api
+module.exports = Api

@@ -1,9 +1,9 @@
 const router = require('./router')
 
-const events = ({ bot, repositories }) => {
+const Events = ({ bot, repositories }) => {
   router.forEach(({ events, handler }) => {
     bot.on(events, handler({ repositories }))
   })
 }
 
-module.exports = events
+module.exports = Events

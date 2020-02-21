@@ -2,10 +2,10 @@ const command = require('./command')
 const registerMessage = require('./register-message')
 const userId = require('./user-id')
 
-const middlewares = ({ bot, repositories }) => {
+const Middlewares = ({ bot, repositories }) => {
   bot.use(userId({ repositories }))
   bot.use(registerMessage({ repositories }))
   bot.use(command)
 }
 
-module.exports = middlewares
+module.exports = Middlewares

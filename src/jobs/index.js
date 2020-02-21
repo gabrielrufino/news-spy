@@ -2,7 +2,7 @@ const { CronJob } = require('cron')
 
 const router = require('./router')
 
-const jobs = async ({ bot, repositories, services }) => {
+const Jobs = async ({ bot, repositories, services }) => {
   const users = await repositories.user.getAll()
   const jobsPerUser = router.filter(route => route.onePerUser)
 
@@ -32,4 +32,4 @@ const jobs = async ({ bot, repositories, services }) => {
   }
 }
 
-module.exports = jobs
+module.exports = Jobs
