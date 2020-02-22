@@ -14,7 +14,7 @@ const direct = ({ bot, repositories }) => async context => {
     if (user) {
       context.session.user = user
       context.session.step = 3
-  
+
       context.reply(`Que mensagem você deseja enviar para ${username}?`)
     } else {
       context.reply(`Usuário de username ${username} não encontrado.`)
