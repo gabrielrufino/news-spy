@@ -6,7 +6,7 @@ const unwatch = ({ repositories }) => async context => {
   if (!subject) {
     context.reply('Você precisar me dizer o assunto que quer parar de vigiar. Por exemplo: "/deixar [assunto]"')
   } else {
-    const user = await repositories.user.getByTelegramId(context.update.message.from.id)
+    const user = context.state.user
 
     if (!user.subjects.includes(subject)) {
       await context.reply(`Você não estava vigiando o assunto ${subject}`)
