@@ -1,9 +1,9 @@
 const callback = ({ repositories }) => async context => {
-  const { from: { id }, data } = context.callbackQuery
+  const { data } = context.callbackQuery
   const payload = JSON.parse(data)
 
   try {
-    const user = await repositories.user.getByTelegramId(id)
+    const user = context.state.user
 
     const news = await repositories.user.getNewsById(user._id, payload.news_id)
 
