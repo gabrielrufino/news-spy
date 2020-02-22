@@ -1,31 +1,34 @@
-const helpers = require('../helpers')
-
 const direct = ({ bot, repositories }) => async context => {
-  const text = helpers.removeCommand(context.message.text)
+  const { session: { step }, message: { text: argument } } = context
 
-  const [username, ...message] = text.split(' ')
+  if (!step) {
+    context.session.handler = 'direct'
+    context.session.step = 2
 
-  if (!username || message.length === 0) {
-    await context.reply('Um username e uma mensagem são obrigatórios! 🤨 Use esse comando da seguinte forma: ')
-    context.reply('/direct [username] [Mensagem que você deseja enviar]')
-  } else {
-    try {
-      const user = await repositories.user.getByTelegramUsername(username)
+    context.reply('Para que usuário você deseja enviar essa mensagem direta?')
+  } else if (step === 2) {
+    const username = argument
 
-      if (user) {
-        const { id, first_name: firstName } = user.telegram
+    const user = await repositories.user.getByTelegramUsername(username)
 
-        await bot.telegram.sendMessage(id, message.join(' '))
-        context.reply(`Mensagem direta enviada para ${firstName}.`)
-      } else {
-        context.reply(`Usuário com username ${username} não encontrado! 🚫`)
-      }
-    } catch (error) {
-      const feedback = 'Houve um erro ao enviar a mensagem'
+    if (user) {
+      context.session.user = user
+      context.session.step = 3
 
-      context.reply(feedback)
-      console.error(feedback)
+      context.reply(`Que mensagem você deseja enviar para ${username}?`)
+    } else {
+      context.reply(`Usuário de username ${username} não encontrado.`)
     }
+  } else if (step === 3) {
+    const message = argument
+    const { telegram: { id, first_name: firstName } } = context.session.user
+
+    await bot.telegram.sendMessage(id, message)
+    context.reply(`Mensagem direta enviada para ${firstName}.`)
+
+    context.session.handler = undefined
+    context.session.user = undefined
+    context.session.step = undefined
   }
 }
 

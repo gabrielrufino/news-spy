@@ -1,7 +1,7 @@
 const sleep = require('sleep-promise')
 
-const subjects = ({ repositories }) => async context => {
-  const user = await repositories.user.getByTelegramId(context.update.message.from.id)
+const subjects = () => async context => {
+  const user = context.state.user
 
   const response = user.subjects.map(subject => `- ${subject}\n`).join('')
 
