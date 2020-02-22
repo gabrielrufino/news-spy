@@ -1,7 +1,7 @@
 const userId = ({ repositories }) => async (context, next) => {
   const { updateType, update } = context
 
-  if (updateType === 'text') {
+  if (updateType === 'message') {
     const { id } = update.message.from
 
     const user = await repositories.user.getByTelegramId(id)
