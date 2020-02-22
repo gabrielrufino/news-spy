@@ -1,20 +1,28 @@
 const broadcast = ({ repositories, bot }) => async context => {
-  try {
-    const users = await repositories.user.getAll()
+  const { step } = context.session
 
-    const { argument: text } = context.state
+  if (!step) {
+    context.reply('Que mensagem você deseja enviar para todos os usuários?')
 
-    if (!text) {
-      context.reply('A trasmissão precisa de uma mensagem. Use da seguinte forma: "/transmitir [mensagem]"')
-    } else {
+    context.session.handler = 'broadcast'
+    context.session.step = 2
+  } else if (step === 2) {
+    try {
+      const users = await repositories.user.getAll()
+
+      const message = context.update.message.text
+
       users.forEach(user => {
-        bot.telegram.sendMessage(user.telegram.id, text)
+        bot.telegram.sendMessage(user.telegram.id, message)
       })
 
-      context.reply('Transmitirei essa mensagem para todos os nossos usuários.')
+      context.reply('Entendido! Transmitirei essa mensagem para todos os nossos usuários.')
+    } catch (error) {
+      throw new Error(error)
     }
-  } catch (error) {
-    throw new Error(error)
+
+    context.session.handler = undefined
+    context.session.step = undefined
   }
 }
 
