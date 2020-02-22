@@ -9,7 +9,7 @@ const unwatch = ({ repositories }) => async context => {
   } else if (step === 2) {
     const subject = context.update.message.text
     const user = context.state.user
-  
+
     if (!user.subjects.includes(subject)) {
       await context.reply(`Você não estava vigiando o assunto ${subject}`)
       context.reply('Veja todos os assuntos que você vigia com o comando "/vigiados"')
