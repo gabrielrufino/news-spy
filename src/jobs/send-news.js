@@ -6,25 +6,33 @@ const sendNews = (userId, { bot, repositories, services }) => async () => {
     const unsentNews = allNews.filter(({ sent }) => !sent)
 
     if (unsentNews.length > 0) {
-      const algorithmiaInput = unsentNews.map(news => ({
-        document: news.title,
-        language: 'auto'
+      const newsWithSentiment = await Promise.all(unsentNews.map(async news => {
+        const [result] = await services
+          .gcloud
+          .language
+          .analyzeSentiment({
+            document: {
+              content: news.title,
+              type: 'PLAIN_TEXT',
+            }
+          })
+
+        return {
+          ...news,
+          sentiment: result.documentSentiment.magnitude
+        }
       }))
 
-      const { result: newsWithSentiment } = await services.algorithmia
-        .algo('nlp/SentimentAnalysis/1.0.5')
-        .pipe(algorithmiaInput)
-
       newsWithSentiment.sort((newsA, newsB) => {
-        const sentimentA = Math.abs(newsA.sentiment)
-        const sentimentB = Math.abs(newsB.sentiment)
+        const sentimentA = newsA.sentiment
+        const sentimentB = newsB.sentiment
 
         return sentimentB - sentimentA
       })
 
       const mostImportantNews = newsWithSentiment[0]
 
-      const news = allNews.find(news => news.title === mostImportantNews.document)
+      const news = allNews.find(news => news.title === mostImportantNews.title)
       const index = allNews.indexOf(news)
 
       await bot.telegram.sendMessage(user.telegram.id, `${news.title}\n\n${news.url}`, {
