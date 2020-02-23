@@ -6,31 +6,14 @@ const sendNews = (userId, { bot, repositories, services }) => async () => {
     const unsentNews = allNews.filter(({ sent }) => !sent)
 
     if (unsentNews.length > 0) {
-      const newsWithSentiment = await Promise.all(unsentNews.map(async news => {
-        const [result] = await services
-          .gcloud
-          .language
-          .analyzeSentiment({
-            document: {
-              content: news.title,
-              type: 'PLAIN_TEXT'
-            }
-          })
-
-        return {
-          ...news,
-          sentiment: result.documentSentiment.magnitude
-        }
-      }))
-
-      newsWithSentiment.sort((newsA, newsB) => {
+      unsentNews.sort((newsA, newsB) => {
         const sentimentA = newsA.sentiment
         const sentimentB = newsB.sentiment
 
         return sentimentB - sentimentA
       })
 
-      const mostImportantNews = newsWithSentiment[0]
+      const mostImportantNews = unsentNews[0]
 
       const news = allNews.find(news => news.title === mostImportantNews.title)
       const index = allNews.indexOf(news)

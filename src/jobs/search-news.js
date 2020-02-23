@@ -22,14 +22,28 @@ const searchNews = (userId, { repositories, services }) => async () => {
           }
         })
 
-        const news = data.articles
+        const news = await Promise.all(data.articles
           .filter(news => !urls.includes(news.url))
-          .map(news => ({
-            title: news.title,
-            url: news.url,
-            subject,
-            sent: false
-          }))
+          .map(async news => {
+            const [result] = await services
+              .gcloud
+              .language
+              .analyzeSentiment({
+                document: {
+                  content: news.title,
+                  type: 'PLAIN_TEXT'
+                }
+              })
+
+            return {
+              title: news.title,
+              url: news.url,
+              subject,
+              sent: false,
+              sentiment: result.documentSentiment.magnitude
+            }
+          })
+        )
 
         repositories.user.pushNews(userId, news)
       } catch (error) {
