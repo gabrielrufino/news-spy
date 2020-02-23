@@ -13,7 +13,7 @@ const sendNews = (userId, { bot, repositories, services }) => async () => {
           .analyzeSentiment({
             document: {
               content: news.title,
-              type: 'PLAIN_TEXT',
+              type: 'PLAIN_TEXT'
             }
           })
 
