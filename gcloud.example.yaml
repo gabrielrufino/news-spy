@@ -5,6 +5,7 @@ env_variables:
   ALGORITHMIA_API_KEY: # Algorithmia API Key
   BOT_TOKEN: # BOT Token
   NEWS_API_TOKEN: # Token of the
+  GOOGLE_APPLICATION_CREDENTIALS: # Credential of GCP
   DATABASE_URL: # URL of the database
   DATABASE_NAME: db_news_spy
   PORT: 8080
