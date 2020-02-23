@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/gabrielrufino/news-spy#readme",
   "dependencies": {
+    "@google-cloud/language": "^3.7.2",
     "algorithmia": "^0.3.10",
     "axios": "^0.19.0",
     "cron": "^1.7.2",
