@@ -45,6 +45,7 @@ const searchNews = (userId, { repositories, services }) => async () => {
           })
         )
 
+        urls.push(...news.map(n => n.url))
         repositories.user.pushNews(userId, news)
       } catch (error) {
         throw new Error(error)
