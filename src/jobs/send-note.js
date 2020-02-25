@@ -6,7 +6,7 @@ const notes = [
     messages: [
       'Identificamos que você não está vigiando nenhum assunto',
       'Eu sou capaz de enviar notícias sobre assuntos que intessam a você em ordem de relevância',
-      'Para vigiar um assunto me envie o comando "/vigiar [assunto]"'
+      'Para vigiar um assunto me envie o comando /vigiar'
     ]
   }
 ]
