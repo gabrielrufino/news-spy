@@ -1,3 +1,5 @@
+const sleep = require('sleep-promise')
+
 const unwatch = ({ repositories }) => async context => {
   const { step } = context.session
 
@@ -12,6 +14,7 @@ const unwatch = ({ repositories }) => async context => {
 
     if (!user.subjects.includes(subject)) {
       await context.reply(`Você não estava vigiando o assunto ${subject}`)
+      await sleep(1000)
       context.reply('Veja todos os assuntos que você vigia com o comando "/vigiados"')
     } else {
       await repositories.user.removeSubject(user._id, subject)
