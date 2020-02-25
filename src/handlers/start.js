@@ -1,3 +1,5 @@
+const sleep = require('sleep-promise')
+
 const start = ({ repositories, jobs }) => async context => {
   const result = await repositories.user.createIfNotExists(context.from)
 
@@ -8,9 +10,11 @@ const start = ({ repositories, jobs }) => async context => {
 
     jobs.initUser(user._id)
 
-    await context.reply(`Olá, ${firstName}! Seja bem-vindo ao News Spy. Eu serei seu espião! 🗞🕵`)
+    await context.reply(`Olá, ${firstName}! Esse é o News Spy e eu serei seu espião! 🗞🕵`)
+    await sleep(2000)
     await context.reply('O meu trabalho é vigiar todas as notícias importantes sobre assuntos que te interessam')
-    await context.reply('Comece agora mesmo. Pense em um assunto e envie para mim o seguinte comando: "/vigiar [assunto]"')
+    await sleep(2200)
+    await context.reply('Comece agora mesmo. Pense em um assunto e me envie o comando /vigiar')
   } else {
     context.reply(`Olá, ${firstName}! Você não precisa mais desse comando. Já é um dos nossos!`)
   }

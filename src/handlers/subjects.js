@@ -8,9 +8,9 @@ const subjects = () => async context => {
   if (response) {
     context.reply(response)
   } else {
-    await context.reply('No momento, você não vigia nenhuma notícia!')
-    await sleep(1000)
-    context.reply('Comece a vigiar com o comando "/vigiar [assunto]"')
+    await context.reply('No momento, você não vigia nenhum assunto!')
+    await sleep(1200)
+    context.reply('Comece a vigiar me enviando o comando /vigiar')
   }
 }
 

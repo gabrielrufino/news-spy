@@ -1,3 +1,5 @@
+const sleep = require('sleep-promise')
+
 const text = ({ handlers }) => async (context, next) => {
   const txt = context.update.message.text
 
@@ -9,6 +11,7 @@ const text = ({ handlers }) => async (context, next) => {
     } else {
       try {
         await context.reply('Desculpe! Ainda não consigo entender textos que não são comandos.')
+        await sleep(1500)
         context.reply('Estou trabalhando nisso.')
       } catch (error) {
         console.error('Houve um erro ao enviar mensagem')
