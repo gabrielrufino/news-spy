@@ -1,12 +1,13 @@
 const broadcast = require('./broadcast')
 const direct = require('./direct')
 const frequency = require('./frequency')
+const help = require('./help')
 const start = require('./start')
-const support = require('./support')
-const watch = require('./watch')
 const subjects = require('./subjects')
+const support = require('./support')
 const unwatch = require('./unwatch')
 const users = require('./users')
+const watch = require('./watch')
 
 const router = [
   {
@@ -36,6 +37,13 @@ const router = [
     alternatives: ['frequency'],
     description: 'Define a frequência que o usuário deseja receber notícias',
     handler: frequency
+  },
+  {
+    name: 'help',
+    command: 'ajuda',
+    alternatives: ['help'],
+    description: 'Instruções de ajuda',
+    handler: help
   },
   {
     name: 'support',
