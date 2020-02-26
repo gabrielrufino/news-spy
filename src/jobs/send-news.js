@@ -17,7 +17,7 @@ const sendNews = (userId, { bot, repositories, services }) => async () => {
 
       const news = allNews.find(news => news.title === mostImportantNews.title)
       const indexes = allNews
-        .map(({url}, index) => ({ url, index }))
+        .map(({ url }, index) => ({ url, index }))
         .filter(n => n.url === news.url)
 
       await bot.telegram.sendMessage(user.telegram.id, `${news.title}\n\n${news.url}`, {
