@@ -8,7 +8,7 @@ module.exports = database => {
     )
   }
 
-  module.exports = {
+  return {
     addVote
   }
 }
