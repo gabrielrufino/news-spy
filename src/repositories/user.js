@@ -14,6 +14,12 @@ module.exports = db => {
     }
   }
 
+  const countUsers = async () => {
+    const count = await users.countDocuments()
+
+    return count
+  }
+
   const createIfNotExists = async data => {
     try {
       const user = await users.findOne({ 'telegram.id': data.id })
@@ -183,6 +189,7 @@ module.exports = db => {
 
   return {
     clearNews,
+    countUsers,
     createIfNotExists,
     getAll,
     getById,
