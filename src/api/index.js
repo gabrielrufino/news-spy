@@ -1,6 +1,6 @@
 const express = require('express')
 
-const Api = () => {
+const Api = ({ repositories }) => {
   const app = express()
 
   app.get('/', (_, response) => {
