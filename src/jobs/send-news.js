@@ -16,7 +16,9 @@ const sendNews = (userId, { bot, repositories, services }) => async () => {
       const mostImportantNews = unsentNews[0]
 
       const news = allNews.find(news => news.title === mostImportantNews.title)
-      const index = allNews.indexOf(news)
+      const indexes = allNews
+        .map(({url}, index) => ({ url, index }))
+        .filter(n => n.url === news.url)
 
       await bot.telegram.sendMessage(user.telegram.id, `${news.title}\n\n${news.url}`, {
         reply_markup: {
@@ -41,7 +43,9 @@ const sendNews = (userId, { bot, repositories, services }) => async () => {
         }
       })
 
-      repositories.user.setNewsAsSent(userId, index)
+      indexes.forEach(({ index }) => {
+        repositories.user.setNewsAsSent(userId, index)
+      })
     }
   } catch (error) {
     throw new Error(error)
