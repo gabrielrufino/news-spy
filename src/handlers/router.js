@@ -2,6 +2,7 @@ const broadcast = require('./broadcast')
 const direct = require('./direct')
 const frequency = require('./frequency')
 const help = require('./help')
+const news = require('./news')
 const start = require('./start')
 const subjects = require('./subjects')
 const support = require('./support')
@@ -30,6 +31,13 @@ const router = [
     alternatives: ['unwatch'],
     description: 'Deixa de vigiar um assunto especificado',
     handler: unwatch
+  },
+  {
+    name: 'news',
+    command: 'noticia',
+    alternatives: ['news'],
+    description: 'Pedir uma notícia',
+    handler: news,
   },
   {
     name: 'frequency',
