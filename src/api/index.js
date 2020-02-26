@@ -9,6 +9,14 @@ const Api = ({ repositories }) => {
     })
   })
 
+  app.post('/votes/:feature', async (request, response) => {
+    const { feature } = request.params
+
+    await repositories.votes.addVote(feature)
+
+    response.status(204).end()
+  })
+
   const { PORT } = process.env
 
   app.listen(PORT, () => {
