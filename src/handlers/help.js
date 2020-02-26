@@ -5,7 +5,7 @@ const help = () => {
     .filter(({ admin, hidden }) => !admin && !hidden)
     .map(({ command, description }) => `/${command} - ${description}`)
     .join('\n\n')
-  
+
   const text = `
 *Todos os comandos*
 
