@@ -37,7 +37,7 @@ const router = [
     command: 'noticia',
     alternatives: ['news'],
     description: 'Pedir uma notícia',
-    handler: news,
+    handler: news
   },
   {
     name: 'frequency',
