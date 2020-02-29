@@ -74,7 +74,7 @@ const router = [
     command: 'ativar',
     alternatives: ['activate', 'enable'],
     description: 'Reativar o News Spy',
-    handler: activate,
+    handler: activate
   },
   {
     name: 'broadcast',
