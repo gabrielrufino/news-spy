@@ -1,5 +1,5 @@
 const checkActive = (context, next) => {
-  const { active }  = context.state.user
+  const { active } = context.state.user
 
   if (active) {
     next()
