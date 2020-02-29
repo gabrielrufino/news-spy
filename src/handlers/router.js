@@ -2,6 +2,7 @@ const broadcast = require('./broadcast')
 const direct = require('./direct')
 const frequency = require('./frequency')
 const help = require('./help')
+const inactivate = require('./inactivate')
 const news = require('./news')
 const start = require('./start')
 const subjects = require('./subjects')
@@ -59,6 +60,13 @@ const router = [
     alternatives: ['support'],
     description: 'Obter ajuda ou reportar problema ao suporte',
     handler: support
+  },
+  {
+    name: 'inactivate',
+    command: 'desativar',
+    alternatives: ['inactivate', 'disable'],
+    description: 'Desativar o News Spy',
+    handler: inactivate
   },
   {
     name: 'broadcast',
