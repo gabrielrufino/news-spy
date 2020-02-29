@@ -164,6 +164,28 @@ module.exports = db => {
     }
   }
 
+  const setActive = async (id) => {
+    try {
+      await users.updateOne(
+        { _id: ObjectID(id) },
+        { $set: { active: true } }
+      )
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  const setInactive = async (id) => {
+    try {
+      await users.updateOne(
+        { _id: ObjectID(id) },
+        { $set: { active: false } }
+      )
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
   const setNewsAsSent = async (id, position) => {
     const key = `news.${position}.sent`
 
@@ -202,6 +224,8 @@ module.exports = db => {
     pushNews,
     pushSubject,
     removeSubject,
+    setActive,
+    setInactive,
     setNewsAsSent,
     updateField
   }
