@@ -1,7 +1,7 @@
 const registerMessage = ({ repositories }) => async (context, next) => {
   const { user } = context.state
 
-  if (user) {
+  if (user && context.update.message) {
     const { date, from, message_id: messageId, text } = context.update.message
 
     const message = {
