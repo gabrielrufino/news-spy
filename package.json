@@ -33,23 +33,23 @@
   },
   "homepage": "https://github.com/gabrielrufino/news-spy#readme",
   "dependencies": {
-    "@google-cloud/language": "^3.7.2",
+    "@google-cloud/language": "^3.8.0",
     "algorithmia": "^0.3.10",
-    "axios": "^0.19.0",
-    "cron": "^1.7.2",
-    "dayjs": "^1.8.16",
-    "dotenv": "^8.1.0",
+    "axios": "^0.19.2",
+    "cron": "^1.8.2",
+    "dayjs": "^1.8.27",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "forever": "^2.0.0",
-    "mongodb": "^3.3.3",
+    "mongodb": "^3.5.7",
     "sleep-promise": "^8.0.1",
-    "telegraf": "^3.36.0"
+    "telegraf": "^3.38.0"
   },
   "devDependencies": {
     "git-branch-is": "^3.1.0",
-    "husky": "^3.0.9",
+    "husky": "^3.1.0",
     "jest": "^24.9.0",
-    "nodemon": "^1.19.2",
-    "standard": "^14.3.1"
+    "nodemon": "^1.19.4",
+    "standard": "^14.3.4"
   }
 }
