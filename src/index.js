@@ -19,6 +19,7 @@ const app = async ({ bot, repositories }) => {
     .then(() => {
       console.log('News Spy funcionando!')
     })
+    .catch(console.error)
 }
 
 module.exports = app
