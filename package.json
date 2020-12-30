@@ -7,7 +7,6 @@
     "deploy:gcloud": "gcloud app deploy gcloud.yaml --stop-previous-version",
     "deploy:heroku": "git push heroku master",
     "dev": "nodemon index.js",
-    "forever": "forever",
     "generate:commands": "node ./src/scripts/generate-commands.js",
     "postdeploy:gcloud": "npm run generate:commands",
     "postdeploy:heroku": "npm run generate:commands",
