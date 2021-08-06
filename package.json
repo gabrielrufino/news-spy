@@ -37,13 +37,13 @@
     "algorithmia": "^0.3.10",
     "axios": "^0.21.1",
     "cron": "^1.8.2",
-    "dayjs": "^1.10.4",
-    "dotenv": "^8.2.0",
+    "dayjs": "^1.10.6",
+    "dotenv": "^8.6.0",
     "express": "^4.17.1",
     "forever": "^2.0.0",
-    "mongodb": "^3.6.5",
+    "mongodb": "^3.6.11",
     "sleep-promise": "^8.0.1",
-    "telegraf": "^3.38.0"
+    "telegraf": "^3.39.0"
   },
   "devDependencies": {
     "git-branch-is": "^3.1.0",
