@@ -1,7 +1,7 @@
 {
   "name": "news-spy",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Chatbot espião de notícias que vigia assuntos de seu interesse e as envia em ordem de relevância",
   "main": "index.js",
   "scripts": {
